@@ -5,3 +5,7 @@ from django.shortcuts import render
 
 def mainview(request):
     return render(request, 'index.html')
+
+
+def conf_policy(request):
+    return render(request, 'conf-policy.html')

@@ -16,9 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from zoolanding.views import mainview
+from zoolanding.views import mainview, conf_policy
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', mainview, name='home'),
+    path('conf-policy', conf_policy, name='conf_policy'),
 ]
