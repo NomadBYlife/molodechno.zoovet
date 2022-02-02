@@ -1,0 +1,51 @@
+# Пример файла robots.txt для настройки гипотетического сайта https://molodechno.zoovet.by/
+
+# Указываем правильный вид сайта (для сайтов с SSL сертификатом, указываем https:// протокол)
+Host: https://molodechno.zoovet.by/
+
+# Указываем где размещается карта сайта (файл sitemap.xml) 
+Sitemap: https://molodechno.zoovet.by/sitemap.xml
+
+# Правила для всех ботов
+User-agent: *
+Allow: /css/*.css
+Disallow: /cgi-bin/
+Disallow: /fonts/
+Disallow: /js/
+Disallow: /php/
+Disallow: /webstat/
+Disallow: *utm=
+Crawl-Delay: 5
+
+# Правила для GoogleBot
+User-agent: GoogleBot
+Disallow: /cgi-bin/
+Disallow: /fonts/
+Disallow: /php/
+Disallow: /webstat/
+Disallow: *utm=
+Allow: /css/*.css
+Allow: /js/*.js
+Allow: /img/*.png
+Allow: /img/*.jpg
+Allow: /img/*.gif
+Allow: /img/*.webp
+Allow: /img/*.svg
+
+
+# Правила для Yandex
+User-agent: Yandex
+Disallow: /cgi-bin/
+Disallow: /fonts/
+Disallow: /php/
+Disallow: /webstat/
+Disallow: *utm=
+Allow: /css/*.css
+Allow: /js/*.js
+Allow: /img/*.png
+Allow: /img/*.jpg
+Allow: /img/*.gif
+Allow: /img/*.webp
+Allow: /img/*.svg
+Clean-Param: utm_source&utm_medium&utm_campaign
+Crawl-Delay: 0.5

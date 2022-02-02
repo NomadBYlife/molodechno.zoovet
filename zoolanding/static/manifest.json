@@ -1,0 +1,22 @@
+{
+  "name": "Ветеринарная клиника в Молодечно — ЗооВетМаркет",
+  "short_name": "ЗооВетМаркет",
+  "start_url": "https://molodechno.zoovet.by",
+  "display": "standalone",
+  "background_color": "#5593DD",
+  "description": "Качественная ветеринарная помощь в Молодечно собакам и кошкам, грызунам и птицам! Широкий спектр услуг. Низкие цены. Индивидуальный подход. Современное оборудование. Рассрочка под 0% до 6 месяцев.",
+  "theme_color": "#d8f2fb",
+  "icons": [{
+    "src": "img/favicons/favicon-48.png",
+    "sizes": "48x48",
+    "type": "image/png"
+  }, {
+    "src": "img/favicons/favicon-62.png",
+    "sizes": "62x62",
+    "type": "image/png"
+  }, {
+    "src": "img/favicons/favicon-192.png",
+    "sizes": "192x192",
+    "type": "image/png"
+  }]
+}
