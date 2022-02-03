@@ -138,33 +138,17 @@
     </div>
 </header>
 <main>
-    <section class="action shadow-top"><h2 class="section-title action-title">Наши акции
-    </h2>
+    {% if action %}
+    <section class="action shadow-top"><h2 class="section-title action-title">НАШИ АКЦИИ</h2>
         <div class="action-content">
-            <div class="action-content-discount"><img class="action_img lazy" src="{{ action.image.url }}"
-                                                      alt="Ветеринарная хирургия"/>
+            {% for i in action %}
+            <div class="action-content-discount">{% if i.image %}<img class="action_img lazy"
+                                                                      src="{{ i.image.url }}" alt=""/> {% endif %}
                 <ul>
-                    <li class="action-content">  {{ action.description|safe }}</li>
-{#                    <li class="action-content">ПОДАРОК ПОСЛЕ ВАКЦИНАЦИИ КОТЯТ И ЩЕНКОВ</li>#}
-{#                    <li class="action-content">После кастрации/стерилизации кота или кошки в нашей#}
-{#                        клинике:<br/><span>- заполните онлайн-анкету на странице компании через QR-код</span><br/>#}
-{#                        <span>- получите смс-код на ваш телефон</span><br/><span>- покажите код администратору</span><br/><span>-заберите подарок</span>#}
-{#                    </li>#}
-{#                    <li class="action-content-lists">Внутри подарочной упаковки:</li>#}
-{#                    <li class="action-content-list">- корм Киттен 0,3 кг, Влажный корм киттен в соусе, ветеринарная#}
-{#                        книжка вакцинации и обработок#}
-{#                    </li>#}
-{#                    <li class="action-content-list">- корм Мини Паппи 0,8 кг, Влажный корм Джуниор, ветеринарная книжка#}
-{#                        вакцинации и обработок#}
-{#                    </li>#}
+                    <li class="action-content">  {{ i.description|safe }}</li>
                 </ul>
             </div>
-            <div class="action-content-discount"><img class="action_img lazy" src="{{ action_sec.image.url }}"
-                                                      alt="Ветеринарная хирургия"/>
-                <ul>
-                    <li class="action-content">{{ action_sec.description|safe }}</li>
-                </ul>
-            </div>
+            {% endfor %}
             <form class="form action_form">
                 <div class="form-title action_form-title">Оставьте заявку и наш<br/>&#32; консультант сразу же вам<br/>&#32;
                     перезвонит
@@ -180,6 +164,7 @@
                 <p class="action-content-lists action-content-present">Количество подарков ограничено!</p></form>
         </div>
     </section>
+    {% endif %}
     <section class="service shadow-top shadow-bottom lazy-bg">
         <div class="section-wrapper"><h2 class="section-title service-title">Наши основные направления</h2>
             <div class="service-content">
@@ -248,12 +233,12 @@
         <div class="why-content">
             <div class="why_items">
                 <div class="why_item why_item-1 wow fadeIn delay-02"><img class="why_item-img lazy"
-                                                                          src="{% static 'img/why/why-1.jpg'' %}"
+                                                                          src="{% static 'img/why/why-1.jpg' %}"
                                                                           alt="собака благодарна ветеринару">
                     <p class="why_item-descr">Мы более 20 лет занимаемся<br>&#32; ветеринарией и помогли уже<br>&#32;
                         огромному количеству<br>&#32; домашних животных</p></div>
                 <div class="why_item why_item-2 wow fadeIn delay-03"><img class="why_item-img lazy"
-                                                                          src="{% static 'img/why/why-2.jpg'' %}"
+                                                                          src="{% static 'img/why/why-2.jpg' %}"
                                                                           alt="ветеринар осматривает собаку">
                     <p class="why_item-descr">Все наши специалисты<br>&#32; с огромной ответственностью<br>&#32;
                         выполняют свою работу</p></div>
@@ -304,7 +289,7 @@
                 <div class="price_block-item"><h3 class="price__item-title">{{service.name_services}}</h3>
                     <div class="price__item-descr">
                         <ul class="price__descr-lists">
-                            <li class="price__descr-list">{{ service.description}}</li>
+                            <li class="price__descr-list">{{ service.description|safe}}</li>
                         </ul>
                         <table class="price__table">
                             <thead>

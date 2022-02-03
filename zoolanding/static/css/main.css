@@ -774,13 +774,6 @@
     padding-left: 15px
 }
 
-.price__descr-list:before {
-    content: '-';
-    position: absolute;
-    left: 0;
-    top: 2px
-}
-
 .price__table {
     width: 100%;
     display: table;
