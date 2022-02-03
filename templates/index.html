@@ -300,10 +300,12 @@
                             </thead>
                             <tbody>
                             {% for i in service.Service.all %}
+                                {% if i.published == True %}
                             <tr>
                                 <td class="left">{{ i.name_of_service }}</td>
                                 <td class="right">{{ i.price }}</td>
                             </tr>
+                                {% endif %}
             {% endfor %}
                             </tbody>
                         </table>
