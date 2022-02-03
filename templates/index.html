@@ -138,38 +138,39 @@
     </div>
 </header>
 <main>
-    <section class="action shadow-top"><h2 class="section-title action-title">Для всех c 1 ноября по 1 декабря 2021
-        действует акция<br/><span>&#32; совместно с @royalcaninby</span></h2>
+    <section class="action shadow-top"><h2 class="section-title action-title">Наши акции
+    </h2>
         <div class="action-content">
-            <div class="action-content-discount"><img class="action_img lazy" src="{% static 'img/action/11.png' %}"
+            <div class="action-content-discount"><img class="action_img lazy" src="{{ action.image.url }}"
                                                       alt="Ветеринарная хирургия"/>
                 <ul>
-                    <li class="action-content-lists">Акция совместно с @royalcaninby</li>
-                    <li class="action-content-list">ПОДАРОК ПОСЛЕ ВАКЦИНАЦИИ КОТЯТ И ЩЕНКОВ</li>
-                    <li class="action-content-list">После кастрации/стерилизации кота или кошки в нашей
-                        клинике:<br/><span>- заполните онлайн-анкету на странице компании через QR-код</span><br/><span>- получите смс-код на ваш телефон</span><br/><span>- покажите код администратору</span><br/><span>-заберите подарок</span>
-                    </li>
-                    <li class="action-content-lists">Внутри подарочной упаковки:</li>
-                    <li class="action-content-list">- корм Киттен 0,3 кг, Влажный корм киттен в соусе, ветеринарная
-                        книжка вакцинации и обработок
-                    </li>
-                    <li class="action-content-list">- корм Мини Паппи 0,8 кг, Влажный корм Джуниор, ветеринарная книжка
-                        вакцинации и обработок
-                    </li>
+                    <li class="action-content">  {{ action.description|safe }}</li>
+{#                    <li class="action-content">ПОДАРОК ПОСЛЕ ВАКЦИНАЦИИ КОТЯТ И ЩЕНКОВ</li>#}
+{#                    <li class="action-content">После кастрации/стерилизации кота или кошки в нашей#}
+{#                        клинике:<br/><span>- заполните онлайн-анкету на странице компании через QR-код</span><br/>#}
+{#                        <span>- получите смс-код на ваш телефон</span><br/><span>- покажите код администратору</span><br/><span>-заберите подарок</span>#}
+{#                    </li>#}
+{#                    <li class="action-content-lists">Внутри подарочной упаковки:</li>#}
+{#                    <li class="action-content-list">- корм Киттен 0,3 кг, Влажный корм киттен в соусе, ветеринарная#}
+{#                        книжка вакцинации и обработок#}
+{#                    </li>#}
+{#                    <li class="action-content-list">- корм Мини Паппи 0,8 кг, Влажный корм Джуниор, ветеринарная книжка#}
+{#                        вакцинации и обработок#}
+{#                    </li>#}
                 </ul>
             </div>
-            <div class="action-content-discount"><img class="action_img lazy" src="{% static 'img/action/22.png' %}"
+            <div class="action-content-discount"><img class="action_img lazy" src="{{ action_sec.image.url }}"
                                                       alt="Ветеринарная хирургия"/>
                 <ul>
-                    <li class="action-content-lists">Акция совместно с @royalcaninby</li>
-                    <li class="action-content-list">ПРОЯВИТЕ ЗАБОТУ</li>
-                    <li class="action-content-list">После кастрации/стерилизации кота или кошки в нашей
-                        клинике:<br/><span>- заполните онлайн-анкету на странице компании через QR-код</span><br/><span>- получите смс-код на ваш телефон</span><br/><span>- покажите код администратору</span><br/><span>- заберите подарок</span>
-                    </li>
-                    <li class="action-content-list">Количество подарков ограничено!</li>
-                    <li class="action-content-lists">Внутри подарочной упаковки:</li>
-                    <li class="action-content-list">- сухой корм 300 гр. Neutered Satiety Balance</li>
-                    <li class="action-content-list">- мерный стаканчик универсальный, объем 250 мл.</li>
+                    <li class="action-content">{{ action_sec.description|safe }}</li>
+{#                    <li class="action-content-list">ПРОЯВИТЕ ЗАБОТУ</li>#}
+{#                    <li class="action-content-list">После кастрации/стерилизации кота или кошки в нашей#}
+{#                        клинике:<br/><span>- заполните онлайн-анкету на странице компании через QR-код</span><br/><span>- получите смс-код на ваш телефон</span><br/><span>- покажите код администратору</span><br/><span>- заберите подарок</span>#}
+{#                    </li>#}
+{#                    <li class="action-content-list">Количество подарков ограничено!</li>#}
+{#                    <li class="action-content-lists">Внутри подарочной упаковки:</li>#}
+{#                    <li class="action-content-list">- сухой корм 300 гр. Neutered Satiety Balance</li>#}
+{#                    <li class="action-content-list">- мерный стаканчик универсальный, объем 250 мл.</li>#}
                 </ul>
             </div>
             <form class="form action_form">
@@ -303,14 +304,12 @@
                     </div>
                 </form>
             </div>
-            <img class="icon_fly icon_fly-2 lazy" data-src="img/icons/icon_fly-2.png" alt="миска с кормом для животного"
-                 data-rellax-percentage="0.5" data-rellax-speed="3"/></div>
+{#            <img class="icon_fly icon_fly-2 lazy" data-src="img/icons/icon_fly-2.png" alt="миска с кормом для животного"#}
+{#                 data-rellax-percentage="0.5" data-rellax-speed="3"/>#}
+        </div>
     </section>
     <section class="price shadow-bottom">
         <div class="section-wrapper"><h2 class="section-title price-title">Стоимость наших услуг</h2>
-            <div class="price__note"><p class="price__note-descr">*В цену вышеперечисленных услуг не включены: стоимость
-                лекарственных препаратов, шприцев, систем для внутривенного введения лекарственных средств и других
-                расходных материалов.</p></div>
             <div class="price_block">
                 <div class="price_block-item"><h3 class="price__item-title">Приём и консультация</h3>
                     <div class="price__item-descr">
@@ -912,6 +911,9 @@
                     </div>
                 </div>
             </div>
+             <div class="price__note"><p class="price__note-descr">*В цену вышеперечисленных услуг не включены: стоимость
+                лекарственных препаратов, шприцев, систем для внутривенного введения лекарственных средств и других
+                расходных материалов.</p></div>
             <div class="price__note"><p class="price__note-descr">**Категория сложности определяется врачом в
                 зависимости от сложности манипуляции (операции) и веса животного.</p>
                 <p class="price__note-descr">Ориентировочную конечную стоимость уточняйте у администратора.</p></div>
