@@ -10,11 +10,10 @@ def conf_policy(request):
 class MainView(views.View):
 
     def get(self, request, *args, **kwargs):
-        action_all = Action.objects.all()
-        services = Services.objects.all()
+        action_all = Action.objects.filter(published=True)[0:2]
+        services = Services.objects.filter(published=True)
         context = {
-            'action': action_all[0],
-            'action_sec': action_all[1],
+            'action': action_all,
             'services': services,
         }
         return render(request, 'index.html', context)
