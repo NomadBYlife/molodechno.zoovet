@@ -1,10 +1,14 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+from zoolanding.models import Services
 
 
 def mainview(request):
-    return render(request, 'index.html')
+    services = Services.objects.all()
+
+    context = {'services': services}
+    return render(request, 'index.html', context)
 
 
 def conf_policy(request):

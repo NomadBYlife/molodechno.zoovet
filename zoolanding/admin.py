@@ -1,3 +1,6 @@
 from django.contrib import admin
+from zoolanding.models import Description, Services
 
-# Register your models here.
+
+admin.site.register(Description)
+admin.site.register(Services)
