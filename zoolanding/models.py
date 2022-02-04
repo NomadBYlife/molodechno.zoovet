@@ -6,10 +6,10 @@ from django.utils.translation import gettext_lazy as _
 from django.core.validators import MaxValueValidator
 
 class MaxSizeValidator(MaxValueValidator):
-    message = _('Картинка не должна преышать  %(limit_value) KB.')
+    """Image validation for maximum size"""
+    message = _('Картинка не должна превышать размера %(limit_value)s MB.')
 
     def __call__(self, value):
-        # get the file size as cleaned value
         cleaned = self.clean(value.size)
         params = {'limit_value': self.limit_value, 'show_value': cleaned, 'value': value}
         if self.compare(cleaned, self.limit_value * 1024 * 1024):
