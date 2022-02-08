@@ -16,6 +16,41 @@ class MaxSizeValidator(MaxValueValidator):
             raise ValidationError(self.message, code=self.code, params=params)
 
 
+
+
+class Info(models.Model):
+    address = models.CharField(verbose_name='Адрес магазина', max_length=100)
+    phone = models.CharField(verbose_name='Номер телефона', max_length=25)
+    time_work1 = models.CharField(verbose_name='Время работы (будни)', max_length=100)
+    time_work2 = models.CharField(verbose_name='Время работы (выходыне)', max_length=100)
+
+    class Meta:
+        verbose_name = 'Информация о нас'
+        verbose_name_plural = 'Информация о нас'
+
+    def __str__(self):
+        return self.address
+
+
+class Directions(models.Model):
+    name_directions = models.CharField(verbose_name='Название услуги', max_length=250)
+    description = RichTextField(verbose_name='Описание услуги')
+    image = models.ImageField(upload_to="images/%Y/%m/%d/", blank=True, null=True, verbose_name='Картинка', validators=[MaxSizeValidator(1)])
+    published = models.BooleanField(default=True, verbose_name='Опубликовано')
+
+    class Meta:
+        verbose_name = 'Основное паравление услуг'
+        verbose_name_plural = 'Основные паравления услуг'
+        ordering = ['name_directions']
+
+    def __str__(self):
+        return self.name_directions
+
+    def image_url(self):
+        if self.image and hasattr(self.image, 'url'):
+            return mark_safe(f'<img src="{self.image.url}" width="auto", height="100px">')
+
+
 class Services(models.Model):
     name_services = models.CharField('Название услуги', max_length=250)
     description = RichTextField('Описание услуги')
@@ -47,10 +82,10 @@ class Description(models.Model):
 
 
 class Action(models.Model):
-    image = models.ImageField(upload_to="images/%Y/%m/%d/", blank=True, null=True, verbose_name='картинка',
-                             validators=[MaxSizeValidator(1)])
+    image = models.ImageField(upload_to="images/%Y/%m/%d/", blank=True, null=True, verbose_name='картинка', validators=[MaxSizeValidator(1)])
     description = RichTextField(verbose_name='описание акции')
     published = models.BooleanField(default=True, verbose_name='Опубликовано')
+
     class Meta:
         verbose_name = 'акция'
         verbose_name_plural = 'акции'
