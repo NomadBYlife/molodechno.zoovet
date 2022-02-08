@@ -37,11 +37,21 @@
         j.src =
             'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
         f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-NHC4GW5');</script><!-- End Google Tag Manager-->
+    })(window, document, 'script', 'dataLayer', 'GTM-NHC4GW5');
+
+
+
+
+    </script><!-- End Google Tag Manager-->
     <style>header, main {
         display: block;
         overflow: hidden;
     }
+
+
+
+
+
 
 
     </style>
@@ -89,12 +99,9 @@
             </div>
         </div>
         <div class="top-bar__contact top-bar__contact-2">
-
-            <div class="top-bar__adress">{{ i.address }}</div>
-            <div class="top-bar__work">ПН-ПТ: {{ i.time_work1 }}<br/>&#32; СБ-ВС: {{ i.time_work2 }}</div>
+            <div class="top-bar__adress"><span>{{ i.city }}, </span>&#32; {{ i.address }}</div>
+            <div class="top-bar__work">{{ i.time_work1 }}<br/>&#32; {{ i.time_work2 }}</div>
         </div>
-        {% endfor %}
-
         <form class="top-bar-form"><input type="hidden" name="form_name"
                                           value="Молодечно: Заказать звонок (топ бар)"/><input
                 class="form-phone top-bar-form-phone" type="tel" name="phone" placeholder="Впишите телефон"/>
@@ -104,7 +111,9 @@
 </div>
 <header class="header">
     <div class="header_top-block">
-        <div class="header-content"><h1 class="header-title">Ветеринарная<br/>&#32; клиника в г. Молодечно</h1>
+        <div class="header-content"><h1 class="header-title">Ветеринарная<br/>&#32; клиника в {{ i.city }}</h1>
+            {% endfor %}
+
             <h2 class="header-subtitle">Мы команда профессионалов, чей главный<br/>&#32; приоритет – здоровье вашего
                 питомца!</h2>
             <form class="form header_form">
@@ -151,7 +160,7 @@
             <div class="action-content-discount">{% if i.image %}<img class="action_img lazy"
                                                                       src="{{ i.image.url }}" alt=""/> {% endif %}
                 <ul>
-                    <li class="action-content">  {{ i.description|safe }}</li>
+                    <li class="action-content"> {{ i.description|safe }}</li>
                 </ul>
             </div>
             {% endfor %}
@@ -172,60 +181,64 @@
     </section>
     {% endif %}
 
-
     <section class="service shadow-top shadow-bottom lazy-bg">
         <div class="section-wrapper"><h2 class="section-title service-title">Наши основные направления</h2>
-            {% for i in directions %}
             <div class="service-content">
                 <div class="service_items">
-                    <div class="service_item"> {% if i.image %} <img class="service_item-img lazy" src="" alt=""/>{% endif %}
+                    {% for i in directions %}
+                    <div class="service_item"><img class="service_item-img lazy" src="{{ i.image.url }}" alt=""/>
                         <h4 class="service_item-title">{{ i.name_directions }}</h4>
                         <p class="service_item-descr">{{ i.description|safe }}</p></div>
-            {% endfor %}
+                    {% endfor %}
 
-
-
-
-                    <div class="service_item"><img class="service_item-img lazy" src="{% static 'img/service/service-2.jpg' %}"
-                                                   alt="Ветеринарная хирургия"/><h4 class="service_item-title">
-                        Хирургия</h4>
-                        <p class="service_item-descr">Проведение широкого спектра хирургических операций под контролем
-                            опытных ветеринаров.</p></div>
-                    <div class="service_item"><img class="service_item-img lazy" src="{% static 'img/service/service-3.jpg' %}"
-                                                   alt="Ветеринарная паразитология"/><h4 class="service_item-title">
-                        Паразитология</h4>
-                        <p class="service_item-descr">Обследование домашних животных на наличие паразитов, назначение и
-                            контроль лечения.</p></div>
-                    <div class="service_item"><img class="service_item-img lazy" src="{% static 'img/service/service-4.jpg' %}"
-                                                   alt="Ветеринарная вакцинация"/><h4 class="service_item-title">
-                        Вакцинация</h4>
-                        <p class="service_item-descr">Это комплекс мероприятий по профилактике инфекционных заболеваний
-                            собак и кошек.</p></div>
-                    <div class="service_item"><img class="service_item-img lazy" src="{% static 'img/service/service-5.jpg' %}"
-                                                   alt="Ветеринарная ортопедия"/><h4 class="service_item-title">
-                        Ортопедия</h4>
-                        <p class="service_item-descr">Выявление и лечение заболеваний опорно-двигательного аппарата у
-                            домашних животных.</p></div>
-                    <div class="service_item"><img class="service_item-img lazy" src="{% static 'img/service/service-6.jpg' %}"
-                                                   alt="Ветеринарная стоматология"/><h4 class="service_item-title">
-                        Стоматология</h4>
-                        <p class="service_item-descr">Профилактика и лечение заболеваний зубов и десен у домашних
-                            животных. Консультации по уходу.</p></div>
-                    <div class="service_item"><img class="service_item-img lazy" src="{% static 'img/service/service-7.jpg' %}"
-                                                   alt="Ветеринарная анестезиология"/><h4 class="service_item-title">
-                        Анестезиология</h4>
-                        <p class="service_item-descr">Анестезия достигается путем введения лекарств, которые подавляют
-                            функцию нервной системы перед операцией.</p></div>
-                    <div class="service_item"><img class="service_item-img lazy" src="{% static 'img/service/service-8.jpg' %}"
-                                                   alt="Ветеринарная неврология"/><h4 class="service_item-title">
-                        Неврология</h4>
-                        <p class="service_item-descr">Диагностика, лечение и профилактика заболеваний периферической
-                            нервной системы.</p></div>
-                    <div class="service_item"><img class="service_item-img lazy" src="{% static 'img/service/service-9.jpg' %}"
-                                                   alt="Ветеринарная офтальмология"/><h4 class="service_item-title">
-                        Офтальмология</h4>
-                        <p class="service_item-descr">Осмотр глазного дна с помощью специальных инструментов , который
-                            позволяет оценить состояние сетчатки.</p></div>
+                    <!--                    <div class="service_item"><img class="service_item-img lazy"-->
+                    <!--                                                   src="{% static 'img/service/service-2.jpg' %}"-->
+                    <!--                                                   alt="Ветеринарная хирургия"/><h4 class="service_item-title">-->
+                    <!--                        Хирургия</h4>-->
+                    <!--                        <p class="service_item-descr">Проведение широкого спектра хирургических операций под контролем-->
+                    <!--                            опытных ветеринаров.</p></div>-->
+                    <!--                    <div class="service_item"><img class="service_item-img lazy"-->
+                    <!--                                                   src="{% static 'img/service/service-3.jpg' %}"-->
+                    <!--                                                   alt="Ветеринарная паразитология"/><h4 class="service_item-title">-->
+                    <!--                        Паразитология</h4>-->
+                    <!--                        <p class="service_item-descr">Обследование домашних животных на наличие паразитов, назначение и-->
+                    <!--                            контроль лечения.</p></div>-->
+                    <!--                    <div class="service_item"><img class="service_item-img lazy"-->
+                    <!--                                                   src="{% static 'img/service/service-4.jpg' %}"-->
+                    <!--                                                   alt="Ветеринарная вакцинация"/><h4 class="service_item-title">-->
+                    <!--                        Вакцинация</h4>-->
+                    <!--                        <p class="service_item-descr">Это комплекс мероприятий по профилактике инфекционных заболеваний-->
+                    <!--                            собак и кошек.</p></div>-->
+                    <!--                    <div class="service_item"><img class="service_item-img lazy"-->
+                    <!--                                                   src="{% static 'img/service/service-5.jpg' %}"-->
+                    <!--                                                   alt="Ветеринарная ортопедия"/><h4 class="service_item-title">-->
+                    <!--                        Ортопедия</h4>-->
+                    <!--                        <p class="service_item-descr">Выявление и лечение заболеваний опорно-двигательного аппарата у-->
+                    <!--                            домашних животных.</p></div>-->
+                    <!--                    <div class="service_item"><img class="service_item-img lazy"-->
+                    <!--                                                   src="{% static 'img/service/service-6.jpg' %}"-->
+                    <!--                                                   alt="Ветеринарная стоматология"/><h4 class="service_item-title">-->
+                    <!--                        Стоматология</h4>-->
+                    <!--                        <p class="service_item-descr">Профилактика и лечение заболеваний зубов и десен у домашних-->
+                    <!--                            животных. Консультации по уходу.</p></div>-->
+                    <!--                    <div class="service_item"><img class="service_item-img lazy"-->
+                    <!--                                                   src="{% static 'img/service/service-7.jpg' %}"-->
+                    <!--                                                   alt="Ветеринарная анестезиология"/><h4 class="service_item-title">-->
+                    <!--                        Анестезиология</h4>-->
+                    <!--                        <p class="service_item-descr">Анестезия достигается путем введения лекарств, которые подавляют-->
+                    <!--                            функцию нервной системы перед операцией.</p></div>-->
+                    <!--                    <div class="service_item"><img class="service_item-img lazy"-->
+                    <!--                                                   src="{% static 'img/service/service-8.jpg' %}"-->
+                    <!--                                                   alt="Ветеринарная неврология"/><h4 class="service_item-title">-->
+                    <!--                        Неврология</h4>-->
+                    <!--                        <p class="service_item-descr">Диагностика, лечение и профилактика заболеваний периферической-->
+                    <!--                            нервной системы.</p></div>-->
+                    <!--                    <div class="service_item"><img class="service_item-img lazy"-->
+                    <!--                                                   src="{% static 'img/service/service-9.jpg' %}"-->
+                    <!--                                                   alt="Ветеринарная офтальмология"/><h4 class="service_item-title">-->
+                    <!--                        Офтальмология</h4>-->
+                    <!--                        <p class="service_item-descr">Осмотр глазного дна с помощью специальных инструментов , который-->
+                    <!--                            позволяет оценить состояние сетчатки.</p></div>-->
                 </div>
                 <form class="form form-hor service_form">
                     <div class="form-title form-hor-title service_form-title">С вашим питомцем что-то не так?<br/>&#32;
@@ -265,7 +278,8 @@
                     <p class="why_item-descr">После диагностики, наши специалисты дадут вам советы по уходу за вашим
                         питомцем</p></div>
                 <div class="why_item why_item-5 wow fadeIn delay-06"><img class="why_item-img lazy"
-                                                                          src="{% static 'img/why/why-5.jpg' %}" alt="животные">
+                                                                          src="{% static 'img/why/why-5.jpg' %}"
+                                                                          alt="животные">
                     <p class="why_item-descr">Работаем со всеми видами животных, начиная от кошек и собак, заканчивая
                         самыми экзотическими животными</p></div>
             </div>
@@ -312,27 +326,27 @@
                             </thead>
                             <tbody>
                             {% for i in service.Service.all %}
-                                {% if i.published == True %}
+                            {% if i.published == True %}
                             <tr>
                                 <td class="left">{{ i.name_of_service }}</td>
                                 <td class="right">{{ i.price }}</td>
                             </tr>
-                                {% endif %}
-            {% endfor %}
+                            {% endif %}
+                            {% endfor %}
                             </tbody>
                         </table>
                     </div>
                 </div>
-                             {% endfor %}
+                {% endfor %}
             </div>
-             <div class="price__note"><p class="price__note-descr">*В цену вышеперечисленных услуг не включены: стоимость
+            <div class="price__note"><p class="price__note-descr">*В цену вышеперечисленных услуг не включены: стоимость
                 лекарственных препаратов, шприцев, систем для внутривенного введения лекарственных средств и других
                 расходных материалов.</p></div>
 
             <div class="price__note"><p class="price__note-descr">**Категория сложности определяется врачом в
                 зависимости от сложности манипуляции (операции) и веса животного.</p>
                 <p class="price__note-descr">Ориентировочную конечную стоимость уточняйте у администратора.</p></div>
-           </div>
+        </div>
     </section>
     <section class="best lazy-bg"><h2 class="section-title best-title">Что нас отличает от других клиник</h2>
         <div class="best-content">
@@ -360,7 +374,8 @@
                     <p class="best_list-descr">У нас работают только профессионалы, которые с большой ответственностью
                         выполняют свою работу!</p></div>
             </div>
-            <picture class="best_img wow fadeIn delay-02"><img class="lazy" src="{% static 'img/best/cat.png' %}" alt="кот">
+            <picture class="best_img wow fadeIn delay-02"><img class="lazy" src="{% static 'img/best/cat.png' %}"
+                                                               alt="кот">
             </picture>
         </div>
     </section>
@@ -377,7 +392,8 @@
                     <li class="pain__list pain__list-6">Аллергия</li>
                     <li class="pain__list pain__list-7">Кровотечения</li>
                 </ul>
-                <picture class="pain__descr-img wow fadeIn delay-04"><img class="lazy" src="{% static 'img/pain/dog.png' %}"
+                <picture class="pain__descr-img wow fadeIn delay-04"><img class="lazy"
+                                                                          src="{% static 'img/pain/dog.png' %}"
                                                                           alt="собака"/></picture>
             </div>
             <form class="form form-hor pain_form">
@@ -499,16 +515,19 @@
             <div class="feedback-write" id="openModal-feedback">Оставить отзыв</div>
         </div>
     </section>
+
     <section class="questions"><h2 class="section-title questions-title">Остались вопросы?</h2>
         <div class="questions-content"><img class="questions-image wow fadeIn delay-02 lazy"
-                                            src="{% static 'img/questions/thinking-girl.jpg' %}" alt="девушка задумалась"/>
+                                            src="{% static 'img/questions/thinking-girl.jpg' %}"
+                                            alt="девушка задумалась"/>
             <div class="questions-contacts">
                 <div class="questions-contacts-list"><h4 class="questions-subtitle">Звоните по телефону:</h4>
                     <div class="questions-number">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 15.8" width="20" height="20">
                             <use xlink:href="#icon-a1"></use>
                         </svg>
-                        <a href="tel:+375293886822">+375(29) 388-68-22</a></div>
+                        {% for i in info.all %}
+                        <a href="tel:{{ i.phone }}">{{ i.phone }}</a></div>
                 </div>
                 <div class="questions-contacts-list"><h4 class="questions-subtitle">Время работы:</h4>
                     <div class="questions-work">
@@ -518,7 +537,7 @@
                             <path d="M15.21 9.69h-4.49v-5.4a.83.83 0 1 0-1.65 0v6.22a.83.83 0 0 0 .82.83h5.32a.83.83 0 1 0 0-1.65z"
                                   fill="#4c7cac"></path>
                         </svg>
-                        <p>ПН-ПТ: 09.00 — 20.00<br/>&#32; СБ-ВС: 09.00 — 18.00</p></div>
+                        <p>{{ i.time_work1 }}<br/>&#32; {{ i.time_work2 }}</p></div>
                 </div>
                 <div class="questions-contacts-list"><h4 class="questions-subtitle">Наш адрес:</h4>
                     <div class="questions-adress">
@@ -528,7 +547,8 @@
                             <path d="M11 5.5a5.5 5.5 0 1 0 5.5 5.5A5.51 5.51 0 0 0 11 5.5zm0 9.18A3.68 3.68 0 1 1 14.67 11 3.68 3.68 0 0 1 11 14.68z"
                                   fill="#4c7cac"></path>
                         </svg>
-                        <p>г. Молодечно,<br/>&#32; ул. Б. Хмельницкого, 3К</p></div>
+                        <p>{{ i.city }},<br/>&#32; {{ i.address }}</p></div>
+                    {% endfor %}
                 </div>
             </div>
             <form class="form questions_form">
@@ -568,14 +588,18 @@
                 <div class="footer_contacts-close" id="footerContactsClose"></div>
                 <div class="footer_contacts-logo logo"></div>
                 <div itemprop="name">ЗооВетМаркет</div>
+
+                {% for i in info.all %}
                 <div itemprop="address" itemscope="itemscope" itemtype="http://schema.org/PostalAddress"><span><b>Адрес: &#32;</b></span><span
-                        itemprop="addressLocality">г. Молодечно</span><span>,</span><br/><span itemprop="streetAddress">ул. Б. Хмельницкого, 3К</span>
+                        itemprop="addressLocality">{{ i.city }}</span><span>,</span><br/><span itemprop="streetAddress">{{ i.address }}</span>
                 </div>
-                <div><b>Телефон: &#32;</b><br/><span itemprop="telephone">+375293886822</span></div>
+                <div><b>Телефон: &#32;</b><br/><span itemprop="telephone"> {{ i.phone }} </span></div>
+                {% endfor %}
             </div>
             <div class="footer_contacts-button" id="footerContactsButton">Контакты</div>
-            <a class="footer_contacts-conf" href="{% url 'conf_policy' %}">Политика<br>&#32; конфиденциальности</a></div>
+            <a class="footer_contacts-conf" href="{% url 'conf_policy' %}">Политика<br>&#32; конфиденциальности</a>
         </div>
+    </div>
 </footer>
 <div id="toTop">
     <svg id="buttonTop" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="55" height="55">
@@ -591,7 +615,7 @@
 <script>window.jQuery ||
 document.write('<script src="../zoolanding/static/js/jquery-3.3.1.min.js"><\/script>')
 
+
 </script>
 <script async="" src="static/js/build.js"></script>
 </body>
-</html>
