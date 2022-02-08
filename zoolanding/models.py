@@ -20,7 +20,7 @@ class MaxSizeValidator(MaxValueValidator):
 
 class Info(models.Model):
     address = models.CharField(verbose_name='Адрес магазина', max_length=100)
-    phone = models.CharField(verbose_name='Номер телефона', max_length=25)
+    phone = models.CharField(verbose_name='Номер телефона', max_length=100)
     time_work1 = models.CharField(verbose_name='Время работы (будни)', max_length=100)
     time_work2 = models.CharField(verbose_name='Время работы (выходыне)', max_length=100)
 
@@ -39,8 +39,8 @@ class Directions(models.Model):
     published = models.BooleanField(default=True, verbose_name='Опубликовано')
 
     class Meta:
-        verbose_name = 'Основное паравление услуг'
-        verbose_name_plural = 'Основные паравления услуг'
+        verbose_name = 'Основное направление услуги'
+        verbose_name_plural = 'Основные направления услуг'
         ordering = ['name_directions']
 
     def __str__(self):
