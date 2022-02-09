@@ -1,5 +1,5 @@
 from django.contrib import admin
-from zoolanding.models import Description, Services, Action
+from zoolanding.models import Description, Services, Action, DifferenceFromOtherClinics
 
 
 class DescriptionInline(admin.TabularInline):
@@ -28,3 +28,4 @@ class DescriptionAdmin(admin.ModelAdmin):
 admin.site.register(Action, AdminAction)
 admin.site.register(Services, ServicesAdmin)
 admin.site.register(Description, DescriptionAdmin)
+admin.site.register(DifferenceFromOtherClinics)
