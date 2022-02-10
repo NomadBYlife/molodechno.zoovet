@@ -78,8 +78,9 @@
                               fill="#e70707"></path>
                     </g>
                 </svg>
-                {% for i in info.all %}
+                {% for i in info %}
                 <a href="tel:{{ i.phone }}">{{ i.phone }}</a>
+                {% endfor %}
                 <svg class="logo-viber" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.96 20" width="18"
                      height="20">
                     <g id="icon-viber">
@@ -95,7 +96,8 @@
             </div>
         </div>
         <div class="top-bar__contact top-bar__contact-2">
-            <div class="top-bar__adress"><span>{{ i.city }}, </span>&#32; {{ i.address }}</div>
+            {% for i in info %}
+            <div class="top-bar__adress"><span>г. {{ i.city }}, </span>&#32; {{ i.address }}</div>
             <div class="top-bar__work">{{ i.time_work1 }}<br/>&#32; {{ i.time_work2 }}</div>
             {% endfor %}
         </div>
@@ -109,7 +111,7 @@
 <header class="header">
     <div class="header_top-block">
         {% for i in info.all %}
-        <div class="header-content"><h1 class="header-title">Ветеринарная<br/>&#32; клиника в {{ i.city }}</h1>
+        <div class="header-content"><h1 class="header-title">Ветеринарная<br/>&#32; клиника в г. {{ i.city }}</h1>
             {% endfor %}
 
             <h2 class="header-subtitle">Мы команда профессионалов, чей главный<br/>&#32; приоритет – здоровье вашего
@@ -183,9 +185,10 @@
             <div class="service-content">
                 <div class="service_items">
                     {% for i in directions %}
-                    <div class="service_item"><img class="service_item-img lazy" src="{{ i.image.url }}" alt=""/>
-                        <h4 class="service_item-title">{{ i.name_directions }}</h4>
-                        <p class="service_item-descr">{{ i.description|safe }}</p></div>
+                        <div class="service_item"><div class="service_item-img">{{ i.image|safe }}</div>
+                        <h4 class="service_item-title">{{ i.name_directions|safe }}</h4>
+{#                        <p class="service_item-descr">{{ i.description|safe }}</p></div>#}
+                        <p>{{ i.description|safe }}</p></div>
                     {% endfor %}
                 </div>
                 <form class="form form-hor service_form">
@@ -237,7 +240,7 @@
         <div class="section-wrapper">
             <div class="specialist-content"><h2 class="section-title specialist-title">Вы стали замечать, что с
                 вашим<br/>&#32; питомцем что-то не так?</h2>
-                <h3 class="specialist-subtitle">Для вызова специалиста вам нужно только:</h3>
+                <h3 class="specialist-subtitle">Для обращения в нашу клинику нужно только:</h3>
                 <ul class="specialist-lists">
                     <li class="specialist-list wow fadeIn delay-03">Заполнить форму</li>
                     <li class="specialist-list wow fadeIn delay-04">Оставить заявку</li>
@@ -245,7 +248,7 @@
                 </ul>
                 <form class="form form-hor specialist_form">
                     <div class="form-title form-hor-title specialist_form-title">Вы обнаружили один из симптомов?<br/>&#32;
-                        Оставьте заявку, для вызова специалиста
+                        Оставьте заявку и мы перезвоним Вам
                     </div>
                     <div class="form-inputs specialist_form-inputs"><input type="hidden" name="form_name"
                                                                            value="Молодечно: Вызвать специалиста"/><input

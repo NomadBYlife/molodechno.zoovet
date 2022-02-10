@@ -20,9 +20,9 @@ class Info(models.Model):
 
 
 class Directions(models.Model):
-    name_directions = models.CharField(verbose_name='Название услуги', max_length=250)
-    description = RichTextField(verbose_name='Описание услуги')
-    image = models.ImageField(upload_to="images/%Y/%m/%d/", blank=True, null=True, verbose_name='Картинка', validators=[MaxSizeValidator(1)])
+    name_directions = models.CharField(verbose_name='направление', max_length=250)
+    image = RichTextUploadingField(blank=True, null=True, verbose_name='картинка', config_name='custom')
+    description = RichTextField(verbose_name='описание направления')
     published = models.BooleanField(default=True, verbose_name='Опубликовано')
 
     class Meta:
@@ -32,10 +32,6 @@ class Directions(models.Model):
 
     def __str__(self):
         return self.name_directions
-
-    def image_url(self):
-        if self.image and hasattr(self.image, 'url'):
-            return mark_safe(f'<img src="{self.image.url}" width="auto", height="100px">')
 
 
 class Services(models.Model):

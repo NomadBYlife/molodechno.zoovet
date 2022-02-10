@@ -36,10 +36,14 @@ class DirectionsAdmin(admin.ModelAdmin):
     list_display_links = ('name_directions',)
     list_editable = ('published',)
 
+class DifferenceAdmin(admin.ModelAdmin):
+    list_display = ('title','published')
+    list_editable = ('published',)
+
 
 admin.site.register(Action, AdminAction)
 admin.site.register(Services, ServicesAdmin)
 admin.site.register(Description, DescriptionAdmin)
 admin.site.register(Info, InfoAdmin)
 admin.site.register(Directions, DirectionsAdmin)
-admin.site.register(DifferenceFromOtherClinics)
+admin.site.register(DifferenceFromOtherClinics, DifferenceAdmin)
