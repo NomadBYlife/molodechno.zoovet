@@ -1,5 +1,5 @@
 from django.contrib import admin
-from zoolanding.models import Description, Services, Action, Info, Directions
+from zoolanding.models import Description, Services, Action, DifferenceFromOtherClinics, Info, Directions
 
 
 class DescriptionInline(admin.TabularInline):
@@ -14,8 +14,8 @@ class ServicesAdmin(admin.ModelAdmin):
 
 
 class AdminAction(admin.ModelAdmin):
-    list_display = ('description', 'image_url', 'published')
-    list_display_links = ('description',)
+    list_display = ('title', 'published')
+    list_display_links = ('title',)
     list_editable = ('published',)
 
 
@@ -42,3 +42,4 @@ admin.site.register(Services, ServicesAdmin)
 admin.site.register(Description, DescriptionAdmin)
 admin.site.register(Info, InfoAdmin)
 admin.site.register(Directions, DirectionsAdmin)
+admin.site.register(DifferenceFromOtherClinics)
