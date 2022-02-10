@@ -14,8 +14,8 @@ class ServicesAdmin(admin.ModelAdmin):
 
 
 class AdminAction(admin.ModelAdmin):
-    list_display = ('description', 'image_url', 'published')
-    list_display_links = ('description',)
+    list_display = ('title', 'published')
+    list_display_links = ('title',)
     list_editable = ('published',)
 
 
