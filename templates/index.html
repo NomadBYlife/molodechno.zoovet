@@ -321,37 +321,23 @@
                 зависимости от сложности манипуляции (операции) и веса животного.</p>
                 <p class="price__note-descr">Ориентировочную конечную стоимость уточняйте у администратора.</p></div>
            </div>
+
+
     </section>
     <section class="best lazy-bg"><h2 class="section-title best-title">Что нас отличает от других клиник</h2>
         <div class="best-content">
+            {% for difference in differences %}
             <div class="best_lists">
-                <div class="best_list best_list-1"><h4 class="best_list-title best_list-title-1">Низкие цены</h4>
-                    <p class="best_list-descr">У нас работают только профессионалы, которые с большой ответственностью
-                        выполняют свою работу!</p></div>
-                <div class="best_list best_list-2"><h4 class="best_list-title best_list-title-2">Рассрочка</h4>
-                    <p class="best_list-descr">У нас работают только профессионалы, которые с большой ответственностью
-                        выполняют свою работу!</p></div>
-                <div class="best_list best_list-3"><h4 class="best_list-title best_list-title-3">Стационарное
-                    лечение</h4>
-                    <p class="best_list-descr">У нас работают только профессионалы, которые с большой ответственностью
-                        выполняют свою работу!</p></div>
-                <div class="best_list best_list-4"><h4 class="best_list-title best_list-title-4">Удобное
-                    расположение</h4>
-                    <p class="best_list-descr">У нас работают только профессионалы, которые с большой ответственностью
-                        выполняют свою работу!</p></div>
-                <div class="best_list best_list-5"><h4 class="best_list-title best_list-title-5">Современное
-                    оборудование</h4>
-                    <p class="best_list-descr">У нас работают только профессионалы, которые с большой ответственностью
-                        выполняют свою работу!</p></div>
-                <div class="best_list best_list-6"><h4 class="best_list-title best_list-title-6">Профессиональный
-                    коллектив</h4>
-                    <p class="best_list-descr">У нас работают только профессионалы, которые с большой ответственностью
-                        выполняют свою работу!</p></div>
+                <div class="best_list best_list-{{difference.id}}"><h4 class="best_list-title best_list-title-{{difference.id}}">{{ difference.title }}</h4>
+                    <p class="best_list-descr">{{ difference.description }}</p></div>
             </div>
+            {% endfor %}
             <picture class="best_img wow fadeIn delay-02"><img class="lazy" src="{% static 'img/best/cat.png' %}" alt="кот">
             </picture>
         </div>
     </section>
+
+
     <section class="pain shadow-top shadow-bottom lazy-bg"><h2 class="section-title pain-title">Симптомы, при которых
         необходимо<br/>&#32; вызвать ветеринара или приехать к нам</h2>
         <div class="pain-content">
