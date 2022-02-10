@@ -53,8 +53,8 @@ class DifferenceFromOtherClinics(models.Model):
     description = models.TextField('Описание')
 
     class Meta:
-        verbose_name = 'Отличие от других клиник'
-        verbose_name_plural = 'Отличия от других клиник'
+        verbose_name = 'Наше отличие'
+        verbose_name_plural = 'Наши отличия'
 
     def __str__(self):
         return self.title
