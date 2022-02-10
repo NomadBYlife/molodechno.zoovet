@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'ckeditor',
+    'ckeditor_uploader',
 
     'zoolanding',
 ]
@@ -134,6 +135,9 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+CKEDITOR_UPLOAD_PATH = ''
+CKEDITOR_RESTRICT_BY_DATE = True
+CKEDITOR_FORCE_JPEG_COMPRESSION = True
 CKEDITOR_CONFIGS = {
     'default': {
         'skin': 'moono',
@@ -144,15 +148,24 @@ CKEDITOR_CONFIGS = {
             {'name': 'basicstyles',
              'items': ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat']},
             {'name': 'paragraph',
-             'items': ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', '-',
-                       'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']},
+             'items': ['NumberedList', 'BulletedList', '-',
+                       'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-']},
             {'name': 'insert',
-             'items': ['HorizontalRule', 'Smiley', 'SpecialChar']},
+             'items': ['Image', 'Table', 'Smiley', 'SpecialChar']},
             '/',
             {'name': 'styles', 'items': ['Styles', 'Format', 'Font', 'FontSize']},
-            {'name': 'colors', 'items': ['TextColor', 'BGColor']}
+            {'name': 'colors', 'items': ['TextColor', 'BGColor']},
         ],
         'toolbar': 'YourCustomToolbarConfig',
         'tabSpaces': 4,
+    },
+    'custom': {
+        'skin': 'moono',
+        'toolbar_YourCustomToolbarConfig': [
+            {'name': 'insert',
+             'items': ['Image']},
+
+        ],
+        'toolbar': 'YourCustomToolbarConfig',
     }
 }

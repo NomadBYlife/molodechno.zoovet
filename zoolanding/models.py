@@ -1,19 +1,6 @@
+from ckeditor_uploader.fields import RichTextUploadingField
 from django.db import models
 from ckeditor.fields import RichTextField
-from django.utils.safestring import mark_safe
-from django.core.exceptions import ValidationError
-from django.utils.translation import gettext_lazy as _
-from django.core.validators import MaxValueValidator
-
-class MaxSizeValidator(MaxValueValidator):
-    """Image validation for maximum size"""
-    message = _('Картинка не должна превышать размера %(limit_value)s MB.')
-
-    def __call__(self, value):
-        cleaned = self.clean(value.size)
-        params = {'limit_value': self.limit_value, 'show_value': cleaned, 'value': value}
-        if self.compare(cleaned, self.limit_value * 1024 * 1024):
-            raise ValidationError(self.message, code=self.code, params=params)
 
 
 class Services(models.Model):
@@ -47,17 +34,14 @@ class Description(models.Model):
 
 
 class Action(models.Model):
-    image = models.ImageField(upload_to="images/%Y/%m/%d/", blank=True, null=True, verbose_name='картинка',
-                             validators=[MaxSizeValidator(1)])
-    description = RichTextField(verbose_name='описание акции')
+    title = models.CharField(max_length=100, verbose_name='название акции')
+    image = RichTextUploadingField(blank=True, null=True, verbose_name='картинка', config_name='custom')
+    description = RichTextUploadingField(verbose_name='описание акции')
     published = models.BooleanField(default=True, verbose_name='Опубликовано')
     class Meta:
         verbose_name = 'акция'
         verbose_name_plural = 'акции'
 
     def __str__(self):
-        return self.description[0:50]
+        return self.title
 
-    def image_url(self):
-        if self.image and hasattr(self.image, 'url'):
-            return mark_safe(f'<img src="{self.image.url}" width="auto", height="100px">')

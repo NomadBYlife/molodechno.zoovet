@@ -142,8 +142,8 @@
     <section class="action shadow-top"><h2 class="section-title action-title">НАШИ АКЦИИ</h2>
         <div class="action-content">
             {% for i in action %}
-            <div class="action-content-discount">{% if i.image %}<img class="action_img lazy"
-                                                                      src="{{ i.image.url }}" alt=""/> {% endif %}
+            <div class="action-content-discount">{% if i.image %}<div class="action_img lazy">
+                   {{ i.image|safe }} </div> {% endif %}
                 <ul>
                     <li class="action-content">  {{ i.description|safe }}</li>
                 </ul>
@@ -360,7 +360,6 @@
                     <li class="pain__list pain__list-1">Нарушение дыхания</li>
                     <li class="pain__list pain__list-2">Рвота</li>
                     <li class="pain__list pain__list-3">Диарея</li>
-                    <li class="pain__list pain__list-4">Инородное тело</li>
                     <li class="pain__list pain__list-5">Отравление</li>
                     <li class="pain__list pain__list-6">Аллергия</li>
                     <li class="pain__list pain__list-7">Кровотечения</li>
@@ -370,7 +369,7 @@
             </div>
             <form class="form form-hor pain_form">
                 <div class="form-title form-hor-title pain_form-title">Вы обнаружили один из симптомов?<br/>&#32;
-                    Оставьте заявку, для вызова специалиста
+                    Оставьте заявку, мы свяжемся с Вами!
                 </div>
                 <div class="form-inputs pain_form-inputs"><input type="hidden" name="form_name"
                                                                  value="Молодечно: Вызвать специалиста"/><input
