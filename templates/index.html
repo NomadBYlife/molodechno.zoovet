@@ -42,16 +42,13 @@
 
 
 
+
+
     </script><!-- End Google Tag Manager-->
     <style>header, main {
         display: block;
         overflow: hidden;
     }
-
-
-
-
-
 
 
     </style>
@@ -81,7 +78,6 @@
                               fill="#e70707"></path>
                     </g>
                 </svg>
-
                 {% for i in info.all %}
                 <a href="tel:{{ i.phone }}">{{ i.phone }}</a>
                 <svg class="logo-viber" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.96 20" width="18"
@@ -101,6 +97,7 @@
         <div class="top-bar__contact top-bar__contact-2">
             <div class="top-bar__adress"><span>{{ i.city }}, </span>&#32; {{ i.address }}</div>
             <div class="top-bar__work">{{ i.time_work1 }}<br/>&#32; {{ i.time_work2 }}</div>
+            {% endfor %}
         </div>
         <form class="top-bar-form"><input type="hidden" name="form_name"
                                           value="Молодечно: Заказать звонок (топ бар)"/><input
@@ -111,6 +108,7 @@
 </div>
 <header class="header">
     <div class="header_top-block">
+        {% for i in info.all %}
         <div class="header-content"><h1 class="header-title">Ветеринарная<br/>&#32; клиника в {{ i.city }}</h1>
             {% endfor %}
 
@@ -180,7 +178,6 @@
         </div>
     </section>
     {% endif %}
-
     <section class="service shadow-top shadow-bottom lazy-bg">
         <div class="section-wrapper"><h2 class="section-title service-title">Наши основные направления</h2>
             <div class="service-content">
@@ -190,55 +187,6 @@
                         <h4 class="service_item-title">{{ i.name_directions }}</h4>
                         <p class="service_item-descr">{{ i.description|safe }}</p></div>
                     {% endfor %}
-
-                    <!--                    <div class="service_item"><img class="service_item-img lazy"-->
-                    <!--                                                   src="{% static 'img/service/service-2.jpg' %}"-->
-                    <!--                                                   alt="Ветеринарная хирургия"/><h4 class="service_item-title">-->
-                    <!--                        Хирургия</h4>-->
-                    <!--                        <p class="service_item-descr">Проведение широкого спектра хирургических операций под контролем-->
-                    <!--                            опытных ветеринаров.</p></div>-->
-                    <!--                    <div class="service_item"><img class="service_item-img lazy"-->
-                    <!--                                                   src="{% static 'img/service/service-3.jpg' %}"-->
-                    <!--                                                   alt="Ветеринарная паразитология"/><h4 class="service_item-title">-->
-                    <!--                        Паразитология</h4>-->
-                    <!--                        <p class="service_item-descr">Обследование домашних животных на наличие паразитов, назначение и-->
-                    <!--                            контроль лечения.</p></div>-->
-                    <!--                    <div class="service_item"><img class="service_item-img lazy"-->
-                    <!--                                                   src="{% static 'img/service/service-4.jpg' %}"-->
-                    <!--                                                   alt="Ветеринарная вакцинация"/><h4 class="service_item-title">-->
-                    <!--                        Вакцинация</h4>-->
-                    <!--                        <p class="service_item-descr">Это комплекс мероприятий по профилактике инфекционных заболеваний-->
-                    <!--                            собак и кошек.</p></div>-->
-                    <!--                    <div class="service_item"><img class="service_item-img lazy"-->
-                    <!--                                                   src="{% static 'img/service/service-5.jpg' %}"-->
-                    <!--                                                   alt="Ветеринарная ортопедия"/><h4 class="service_item-title">-->
-                    <!--                        Ортопедия</h4>-->
-                    <!--                        <p class="service_item-descr">Выявление и лечение заболеваний опорно-двигательного аппарата у-->
-                    <!--                            домашних животных.</p></div>-->
-                    <!--                    <div class="service_item"><img class="service_item-img lazy"-->
-                    <!--                                                   src="{% static 'img/service/service-6.jpg' %}"-->
-                    <!--                                                   alt="Ветеринарная стоматология"/><h4 class="service_item-title">-->
-                    <!--                        Стоматология</h4>-->
-                    <!--                        <p class="service_item-descr">Профилактика и лечение заболеваний зубов и десен у домашних-->
-                    <!--                            животных. Консультации по уходу.</p></div>-->
-                    <!--                    <div class="service_item"><img class="service_item-img lazy"-->
-                    <!--                                                   src="{% static 'img/service/service-7.jpg' %}"-->
-                    <!--                                                   alt="Ветеринарная анестезиология"/><h4 class="service_item-title">-->
-                    <!--                        Анестезиология</h4>-->
-                    <!--                        <p class="service_item-descr">Анестезия достигается путем введения лекарств, которые подавляют-->
-                    <!--                            функцию нервной системы перед операцией.</p></div>-->
-                    <!--                    <div class="service_item"><img class="service_item-img lazy"-->
-                    <!--                                                   src="{% static 'img/service/service-8.jpg' %}"-->
-                    <!--                                                   alt="Ветеринарная неврология"/><h4 class="service_item-title">-->
-                    <!--                        Неврология</h4>-->
-                    <!--                        <p class="service_item-descr">Диагностика, лечение и профилактика заболеваний периферической-->
-                    <!--                            нервной системы.</p></div>-->
-                    <!--                    <div class="service_item"><img class="service_item-img lazy"-->
-                    <!--                                                   src="{% static 'img/service/service-9.jpg' %}"-->
-                    <!--                                                   alt="Ветеринарная офтальмология"/><h4 class="service_item-title">-->
-                    <!--                        Офтальмология</h4>-->
-                    <!--                        <p class="service_item-descr">Осмотр глазного дна с помощью специальных инструментов , который-->
-                    <!--                            позволяет оценить состояние сетчатки.</p></div>-->
                 </div>
                 <form class="form form-hor service_form">
                     <div class="form-title form-hor-title service_form-title">С вашим питомцем что-то не так?<br/>&#32;
@@ -615,6 +563,8 @@
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script>window.jQuery ||
 document.write('<script src="../zoolanding/static/js/jquery-3.3.1.min.js"><\/script>')
+
+
 
 
 </script>

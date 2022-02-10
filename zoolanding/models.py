@@ -22,6 +22,7 @@ class Info(models.Model):
     phone = models.CharField(verbose_name='Номер телефона', max_length=100)
     time_work1 = models.CharField(verbose_name='Время работы (будни)', max_length=100)
     time_work2 = models.CharField(verbose_name='Время работы (выходыне)', max_length=100)
+    published = models.BooleanField(default=True, verbose_name='Опубликовано')
 
     class Meta:
         verbose_name = 'Информация о нас'
@@ -86,8 +87,8 @@ class Action(models.Model):
     published = models.BooleanField(default=True, verbose_name='Опубликовано')
 
     class Meta:
-        verbose_name = 'акция'
-        verbose_name_plural = 'акции'
+        verbose_name = 'Акция'
+        verbose_name_plural = 'Акции'
 
     def __str__(self):
         return self.description[0:50]
