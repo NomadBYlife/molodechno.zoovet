@@ -5,6 +5,7 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import MaxValueValidator
 
+
 class MaxSizeValidator(MaxValueValidator):
     """Image validation for maximum size"""
     message = _('Картинка не должна превышать размера %(limit_value)s MB.')
@@ -48,9 +49,10 @@ class Description(models.Model):
 
 class Action(models.Model):
     image = models.ImageField(upload_to="images/%Y/%m/%d/", blank=True, null=True, verbose_name='картинка',
-                             validators=[MaxSizeValidator(1)])
+                              validators=[MaxSizeValidator(1)])
     description = RichTextField(verbose_name='описание акции')
     published = models.BooleanField(default=True, verbose_name='Опубликовано')
+
     class Meta:
         verbose_name = 'акция'
         verbose_name_plural = 'акции'
@@ -61,3 +63,16 @@ class Action(models.Model):
     def image_url(self):
         if self.image and hasattr(self.image, 'url'):
             return mark_safe(f'<img src="{self.image.url}" width="auto", height="100px">')
+
+
+class DifferenceFromOtherClinics(models.Model):
+    title = models.CharField('Название отличия', max_length=100)
+    description = models.TextField('Описание')
+
+    class Meta:
+        verbose_name = 'Отличие от других клиник'
+        verbose_name_plural = 'Отличия от других клиник'
+
+    def __str__(self):
+        return self.title
+
