@@ -6,7 +6,7 @@ zoolanding/migrations
 __pycache__/
 *.py[cod]
 *$py.class
-
+.вырезанное
 # C extensions
 *.so
 
