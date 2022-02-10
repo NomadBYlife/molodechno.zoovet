@@ -34,10 +34,12 @@ class Description(models.Model):
 
 
 class Action(models.Model):
+  
     title = models.CharField(max_length=100, verbose_name='название акции')
     image = RichTextUploadingField(blank=True, null=True, verbose_name='картинка', config_name='custom')
     description = RichTextUploadingField(verbose_name='описание акции')
     published = models.BooleanField(default=True, verbose_name='Опубликовано')
+
     class Meta:
         verbose_name = 'акция'
         verbose_name_plural = 'акции'
@@ -45,3 +47,14 @@ class Action(models.Model):
     def __str__(self):
         return self.title
 
+
+class DifferenceFromOtherClinics(models.Model):
+    title = models.CharField('Название отличия', max_length=100)
+    description = models.TextField('Описание')
+
+    class Meta:
+        verbose_name = 'Отличие от других клиник'
+        verbose_name_plural = 'Отличия от других клиник'
+
+    def __str__(self):
+        return self.title
