@@ -1,0 +1,10 @@
+    <section class="service shadow-top shadow-bottom lazy-bg">
+        <div class="section-wrapper"><h2 class="section-title service-title">Наши основные направления</h2><div class="service-content">
+                <div class="service_items">
+                    {% for i in directions %}
+                    <div class="service_item"><img class="service_item-img lazy" {% if i.image %}
+                                                   {% endif %}
+                                                   <h4 class="service_item-title">{{ i.name_directions }}</h4>
+                        <p class="service_item-descr">{{ i.description|safe }}</p></div>
+
+        {% endfor %}
