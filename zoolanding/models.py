@@ -96,3 +96,4 @@ class Action(models.Model):
     def image_url(self):
         if self.image and hasattr(self.image, 'url'):
             return mark_safe(f'<img src="{self.image.url}" width="auto", height="100px">')
+
