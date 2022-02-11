@@ -299,14 +299,23 @@
                 <p class="price__note-descr">Ориентировочную конечную стоимость уточняйте у администратора.</p></div>
            </div>
     </section>
-    <section class="best lazy-bg"><h2 class="section-title best-title">Что нас отличает от других клиник</h2>
+    <section class="best lazy-bg"><h2 class="section-title best-title">ЧТО НАС ОТЛИЧАЕТ ОТ ДРУГИХ КЛИНИК</h2>
         <div class="best-content">
-            {% for difference in differences %}
             <div class="best_lists">
-                <div class="best_list best_list-{{difference.id}}"><h4 class="best_list-title best_list-title-{{difference.id}}">{{ difference.title }}</h4>
-                    <p class="best_list-descr">{{ difference.description }}</p></div>
+                <div class="best_list best_list-1"><h4 class="best_list-title best_list-title-1">{{ differences.0 }}</h4>
+                    <p class="best_list-descr">{{ differences.0.description }}</p></div>
+                <div class="best_list best_list-2"><h4 class="best_list-title best_list-title-2">{{ differences.1 }}</h4>
+                    <p class="best_list-descr">{{ differences.1.description  }}</p></div>
+                <div class="best_list best_list-3"><h4 class="best_list-title best_list-title-3">{{ differences.2 }}</h4>
+                    <p class="best_list-descr">{{ differences.2.description  }}</p></div>
+                <div class="best_list best_list-4"><h4 class="best_list-title best_list-title-4">{{ differences.3 }}</h4>
+                    <p class="best_list-descr">{{ differences.3.description  }}</p></div>
+                <div class="best_list best_list-5"><h4 class="best_list-title best_list-title-5">{{ differences.4 }}</h4>
+                    <p class="best_list-descr">{{ differences.4.description  }}</p></div>
+                <div class="best_list best_list-6"><h4 class="best_list-title best_list-title-6">{{ differences.5 }}</h4>
+                    <p class="best_list-descr">{{ differences.5.description  }}</p></div>
+
             </div>
-            {% endfor %}
             <picture class="best_img wow fadeIn delay-02"><img class="lazy" src="{% static 'img/best/cat.png' %}" alt="кот">
             </picture>
         </div>
