@@ -2,6 +2,7 @@
 .DS_Store
 media/
 zoolanding/migrations
+application
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
