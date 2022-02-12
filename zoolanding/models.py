@@ -64,12 +64,27 @@ class Description(models.Model):
         return self.name_of_service
 
 
+class TitleAction(models.Model):
+    title = RichTextUploadingField(verbose_name='Заголовок Акций')
+    published = models.BooleanField(default=True, verbose_name='Опубликовано')
+
+    class Meta:
+        verbose_name_plural = 'Заголовки Акций'
+        verbose_name = 'Заголовок Акций'
+
+    def __str__(self):
+        return self.title
+
+
 class Action(models.Model):
-  
+
     title = models.CharField(max_length=100, verbose_name='название акции')
     image = RichTextUploadingField(blank=True, null=True, verbose_name='картинка', config_name='custom')
     description = RichTextUploadingField(verbose_name='описание акции')
     published = models.BooleanField(default=True, verbose_name='Опубликовано')
+    title_action = models.ForeignKey('TitleAction', on_delete=models.SET_NULL,
+                                     verbose_name='Заголовок Акций',
+                                     blank=True, null=True)
 
     class Meta:
         verbose_name = 'Акция'
