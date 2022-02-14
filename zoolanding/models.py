@@ -4,11 +4,12 @@ from ckeditor.fields import RichTextField
 
 
 class Info(models.Model):
-    city = models.CharField(verbose_name='Город', max_length=100)
-    address = models.CharField(verbose_name='Адрес магазина', max_length=100)
-    phone = models.CharField(verbose_name='Номер телефона', max_length=100)
-    time_work1 = models.CharField(verbose_name='Время работы (будни)', max_length=100)
-    time_work2 = models.CharField(verbose_name='Время работы (выходыне)', max_length=100)
+    city = models.CharField(verbose_name='Город', max_length=100, blank=True, null=True)
+    address = models.CharField(verbose_name='Адрес магазина', max_length=100, blank=True, null=True)
+    phone = models.CharField(verbose_name='Номер телефона', max_length=100, blank=True, null=True)
+    time_work1 = models.CharField(verbose_name='Время работы (будни)', max_length=100, blank=True, null=True)
+    time_work2 = models.CharField(verbose_name='Время работы (выходыне)', max_length=100, blank=True, null=True)
+    weekend = models.CharField(verbose_name='выходные', blank=True, null=True, max_length=100)
     published = models.BooleanField(default=True, verbose_name='Опубликовано')
 
     class Meta:
@@ -50,7 +51,7 @@ class Services(models.Model):
 
 class Description(models.Model):
     name_of_service = models.CharField('Наименование услуги', max_length=250)
-    price = models.DecimalField('Стоимость, бел. руб.', max_digits=5, decimal_places=2)
+    price = models.CharField(max_length=13 ,verbose_name='Стоимость, бел. руб.')
     service = models.ForeignKey('Services', on_delete=models.CASCADE, related_name='Service',
                                 verbose_name='Категория услуг')
     published = models.BooleanField(default=True, verbose_name='Опубликовано')

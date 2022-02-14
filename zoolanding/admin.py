@@ -26,9 +26,9 @@ class DescriptionAdmin(admin.ModelAdmin):
 
 
 class InfoAdmin(admin.ModelAdmin):
-    list_display = ('city', 'address', 'phone', 'time_work1', 'time_work2', 'published')
-    list_display_links = ('city',)
-    list_editable = ('time_work1', 'time_work2', 'published',)
+    list_display = ('city', 'address', 'phone', 'time_work1', 'time_work2', 'weekend', 'published')
+    list_display_links = ('city', 'address')
+    list_editable = ('published',)
 
 
 class DirectionsAdmin(admin.ModelAdmin):

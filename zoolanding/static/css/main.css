@@ -915,6 +915,7 @@
 }
 
 .best_list-descr {
+    width: 330px;
     position: absolute;
     visibility: hidden;
     background: #fff;
@@ -1976,7 +1977,7 @@
 
     .best_list-3 {
         top: 50%;
-        left: -93px;
+        left: -87px;
         transform: translate(-100%, -50%)
     }
 
@@ -2099,7 +2100,4 @@
         z-index: 1
     }
 
-    .best_list-3, .best_list-4 {
-        max-width: 330px
-    }
 }

@@ -14,7 +14,7 @@ class MainView(views.View):
         action_all = Action.objects.filter(published=True)[0:2]
         services = Services.objects.filter(published=True)
         differences = DifferenceFromOtherClinics.objects.filter(published=True)[0:6]
-        info = Info.objects.filter(published=True)
+        info = Info.objects.filter(published=True)[0:1]
         directions = Directions.objects.filter(published=True)
         context = {
             'action': action_all,
