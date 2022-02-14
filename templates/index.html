@@ -153,9 +153,10 @@
 </header>
 
 <main>
-    {% if action %}
-    <section class="action shadow-top"><h2 class="section-title action-title">НАШИ АКЦИИ</h2>
+    {% if title_action %}
+    <section class="action shadow-top"><h2 class="section-title action-title">{{ title_action.title|safe }}</h2>
         <div class="action-content">
+            {% if action %}
             {% for i in action %}
             <div class="action-content-discount">{% if i.image %}<div class="action_img lazy">
                    {{ i.image|safe }} </div> {% endif %}
@@ -164,6 +165,13 @@
                 </ul>
             </div>
             {% endfor %}
+            {% else %}
+            <div class="action-content-discount">
+                <div class="action_img lazy action-content">
+                    <img src="{% static 'img/action/animals.png' %}" alt="заглушка на акции">
+                </div>
+            </div>
+            {% endif %}
             <form class="form action_form">
                 <div class="form-title action_form-title">Оставьте заявку и наш<br/>&#32; консультант сразу же вам<br/>&#32;
                     перезвонит
@@ -176,7 +184,7 @@
                                                                                                     type="tel"/>
                     <button class="form-btn" type="submit">Отправить</button>
                 </div>
-                <p class="action-content-lists action-content-present">Количество подарков ограничено!</p></form>
+            </form>
         </div>
     </section>
     {% endif %}
