@@ -51,7 +51,7 @@ class Services(models.Model):
 
 class Description(models.Model):
     name_of_service = models.CharField('Наименование услуги', max_length=250)
-    price = models.CharField(max_length=13 ,verbose_name='Стоимость, бел. руб.')
+    price = models.CharField(max_length=13, verbose_name='Стоимость, бел. руб.')
     service = models.ForeignKey('Services', on_delete=models.CASCADE, related_name='Service',
                                 verbose_name='Категория услуг')
     published = models.BooleanField(default=True, verbose_name='Опубликовано')
@@ -78,7 +78,6 @@ class TitleAction(models.Model):
 
 
 class Action(models.Model):
-
     title = models.CharField(max_length=100, verbose_name='название акции')
     image = RichTextUploadingField(blank=True, null=True, verbose_name='картинка', config_name='custom')
     description = RichTextUploadingField(verbose_name='описание акции')
@@ -94,7 +93,7 @@ class Action(models.Model):
     def __str__(self):
         return self.title
 
-      
+
 class DifferenceFromOtherClinics(models.Model):
     title = models.CharField('Название отличия', max_length=100)
     description = models.TextField('Описание')
@@ -106,3 +105,35 @@ class DifferenceFromOtherClinics(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Review(models.Model):
+    REVIEW_CHOICES = {
+        (1, 1),
+        (2, 2),
+        (3, 3),
+        (4, 4),
+        (5, 5),
+        (6, 6),
+        (7, 7),
+        (8, 8),
+        (9, 9),
+        (10, 10),
+
+    }
+    title = models.CharField('короткое название', max_length=250)
+    author = models.CharField('автор коментария', max_length=100)
+    city = models.CharField('город', max_length=100)
+    data = models.DateField('дата добавления')
+    raiting = models.PositiveIntegerField('оценка', choices=REVIEW_CHOICES)
+    content = models.TextField('содержание отзыва')
+    published = models.BooleanField('опубликовано', default=True)
+    image = RichTextUploadingField(blank=True, null=True, verbose_name='картинка', config_name='custom')
+    # image = models.ImageField(upload_to="photo_review/%Y/%m/%d/", blank=True, null=True, verbose_name='фото автора')
+
+    class Meta:
+        verbose_name = 'Отзыв'
+        verbose_name_plural = 'Отзывы'
+
+    def __str__(self):
+        return f'отзыв {self.id} от {self.author}'
