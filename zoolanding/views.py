@@ -1,6 +1,10 @@
-
 from django import views
-from django.shortcuts import render
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from .forms import ContactForm
+from django.core.mail import send_mail
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from zoolanding.models import Services, Action, TitleAction, DifferenceFromOtherClinics, Info, Directions, Review
 
 
@@ -34,3 +38,45 @@ class MainView(views.View):
             'review': review,
         }
         return render(request, 'index.html', context)
+
+
+def contact_view(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        # print(form.data)
+        if form.is_valid():
+            phone_number = form.cleaned_data['phone']
+            form_name = form.cleaned_data['form_name']
+            updated_values = {
+                'form_name': form_name,
+                'message': form.cleaned_data['message'],
+                'user_name': form.cleaned_data['user_name'],
+                'complete': False
+            }
+            if form.cleaned_data['user_name']:
+                Contact.objects.update_or_create(phone=phone_number,
+                                                 defaults=updated_values)
+                return redirect('home')
+            elif form.cleaned_data['message']:
+                Contact.objects.update_or_create(phone=phone_number,
+                                                 defaults=updated_values)
+                return redirect('home')
+            else:
+                Contact.objects.update_or_create(phone=phone_number,
+                                                 defaults=updated_values)
+                return redirect('home')
+        else:
+            return HttpResponse(form.errors['user_tel'])
+
+
+@receiver(post_save, sender=Contact)
+def my_handler(sender, **kwargs):
+    name = kwargs['instance']
+    mine = Contact.objects.get(phone=name)
+    send_mail(
+        subject=mine.form_name,
+        message=f'Заявка от {mine.user_name}, с номером телефона: {mine.phone}: {mine.message}',
+        from_email='FROM EMAIL',
+        recipient_list=['TO EMAIL_LIST'],
+        fail_silently=False,
+    )

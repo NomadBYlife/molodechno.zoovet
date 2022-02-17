@@ -107,6 +107,23 @@ class DifferenceFromOtherClinics(models.Model):
         return self.title
 
 
+
+class Contact(models.Model):
+    user_name = models.CharField(verbose_name='Имя пользователя', max_length=20, blank=True)
+    phone = models.CharField(verbose_name='Номер телефона', max_length=20, db_index=True)
+    complete = models.BooleanField(verbose_name='Обработано', default=False)
+    created = models.DateTimeField(auto_now_add=True)
+    form_name = models.CharField(verbose_name='Из какой формы заявка', max_length=50)
+    message = models.TextField(verbose_name='Сообщение', blank=True)
+
+    class Meta:
+        verbose_name = 'Заявка'
+        verbose_name_plural = 'Заявки'
+
+    def __str__(self):
+        return self.phone
+
+      
 class Review(models.Model):
     REVIEW_CHOICES = {
         (1, 1),
@@ -119,8 +136,8 @@ class Review(models.Model):
         (8, 8),
         (9, 9),
         (10, 10),
-
     }
+    
     title = models.CharField('короткое название', max_length=250)
     author = models.CharField('автор коментария', max_length=100)
     city = models.CharField('город', max_length=100)

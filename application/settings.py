@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-z+f$li86jopu3blusde+pmmbh6q=zt13jp6p^&i0_(riyl!_oe'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
+DEBUG = True
 
 # ALLOWED_HOSTS = []
 
@@ -127,13 +127,13 @@ USE_TZ = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# STATIC_URL = '/static/'
-# STATIC_ROOT = BASE_DIR/ 'static/'
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, 'zoolanding/static/'),
-# ]
-# MEDIA_URL = '/media/'
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR/ 'static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'zoolanding/static/'),
+]
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CKEDITOR_UPLOAD_PATH = ''
 CKEDITOR_RESTRICT_BY_DATE = True
@@ -169,3 +169,9 @@ CKEDITOR_CONFIGS = {
         'toolbar': 'YourCustomToolbarConfig',
     }
 }
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'YOUR EMAIL'
+EMAIL_HOST_PASSWORD = 'YOUR PASSWORD'
+EMAIL_PORT = 587

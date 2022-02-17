@@ -1,6 +1,12 @@
 from django import forms
-
 from zoolanding.models import Review
+from .models import Contact
+
+
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = Contact
+        fields = '__all__'
 
 
 class ReviewAdminChoiceForm(forms.ModelForm):
