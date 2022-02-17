@@ -1,7 +1,7 @@
 
 from django import views
 from django.shortcuts import render
-from zoolanding.models import Services, Action, TitleAction, DifferenceFromOtherClinics, Info, Directions
+from zoolanding.models import Services, Action, TitleAction, DifferenceFromOtherClinics, Info, Directions, Review
 
 
 def conf_policy(request):
@@ -23,6 +23,7 @@ class MainView(views.View):
         differences = DifferenceFromOtherClinics.objects.filter(published=True)[0:6]
         info = Info.objects.filter(published=True)[0:1]
         directions = Directions.objects.filter(published=True)
+        review = Review.objects.filter(published=True)
         context = {
             'action': action_all,
             'services': services,
@@ -30,5 +31,6 @@ class MainView(views.View):
             'info': info,
             'directions': directions,
             'title_action': title_action,
+            'review': review,
         }
         return render(request, 'index.html', context)
