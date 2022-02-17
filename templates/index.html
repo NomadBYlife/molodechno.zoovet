@@ -101,7 +101,9 @@
             <div class="top-bar__work">{{ i.time_work1 }}{% if i.time_work2 %}<br/>&#32; {{ i.time_work2 }}{% else %}<span> {{ i.weekend }}</span>{% endif %}</div>
             {% endfor %}
         </div>
-        <form class="top-bar-form"><input type="hidden" name="form_name"
+        <form class="top-bar-form">
+            {% csrf_token %}
+            <input type="hidden" name="form_name"
                                           value="Молодечно: Заказать звонок (топ бар)"/><input
                 class="form-phone top-bar-form-phone" type="tel" name="phone" placeholder="Впишите телефон"/>
             <button class="form-btn top-bar-form-btn" type="submit">ЗАКАЗАТЬ ЗВОНОК</button>
@@ -117,6 +119,7 @@
             <h2 class="header-subtitle">Мы команда профессионалов, чей главный<br/>&#32; приоритет – здоровье вашего
                 питомца!</h2>
             <form class="form header_form">
+                {% csrf_token %}
                 <div class="form-title header_form-title">Запишитесь на приём<br/>&#32; к специалисту прямо сейчас</div>
                 <div class="form-inputs header_form-inputs"><input type="hidden" name="form_name"
                                                                    value="Молодечно: Записаться на приём"/><input
@@ -173,6 +176,7 @@
             </div>
             {% endif %}
             <form class="form action_form">
+                {% csrf_token %}
                 <div class="form-title action_form-title">Оставьте заявку и наш<br/>&#32; консультант сразу же вам<br/>&#32;
                     перезвонит
                 </div>
@@ -200,6 +204,7 @@
                     {% endfor %}
                 </div>
                 <form class="form form-hor service_form">
+                    {% csrf_token %}
                     <div class="form-title form-hor-title service_form-title">С вашим питомцем что-то не так?<br/>&#32;
                         Оставьте заявку для бесплатной консультации
                     </div>
@@ -255,6 +260,7 @@
                     <li class="specialist-list wow fadeIn delay-05">Подождать, пока менеджер вам перезвонит</li>
                 </ul>
                 <form class="form form-hor specialist_form">
+                    {% csrf_token %}
                     <div class="form-title form-hor-title specialist_form-title">Вы обнаружили один из симптомов?<br/>&#32;
                         Оставьте заявку и мы перезвоним Вам
                     </div>
@@ -347,6 +353,7 @@
                                                                           alt="собака"/></picture>
             </div>
             <form class="form form-hor pain_form">
+                {% csrf_token %}
                 <div class="form-title form-hor-title pain_form-title">Вы обнаружили один из симптомов?<br/>&#32;
                     Оставьте заявку, мы свяжемся с Вами!
                 </div>
@@ -502,6 +509,7 @@
                 </div>
             </div>
             <form class="form questions_form">
+                {% csrf_token %}
                 <div class="form-title">Задайте вопрос<br/>&#32; нашим консультантам</div>
                 <div class="form-inputs questions_form-inputs"><input type="hidden" name="form_name"
                                                                       value="Молодечно: Остались вопросы"/><input
@@ -516,6 +524,7 @@
         <div class="modal-content">
             <div class="modal-close" id="closeModal-feedback"></div>
             <form class="modal_form">
+                {% csrf_token %}
                 <div class="form-title modal-feedback-title">Написать отзыв</div>
                 <input type="hidden" name="form_name" value="Молодечно: Отзыв"><input
                     class="form-phone modal_form-phone" name="phone" placeholder="Впишите телефон" type="tel"><textarea
@@ -565,10 +574,6 @@
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script>window.jQuery ||
 document.write('<script src="../zoolanding/static/js/jquery-3.3.1.min.js"><\/script>')
-
-
-
-
 </script>
 <script async="" src="static/js/build.js"></script>
 </body>

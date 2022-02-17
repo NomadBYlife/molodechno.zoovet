@@ -1,7 +1,9 @@
-
 from django import views
-from django.shortcuts import render
-from zoolanding.models import Services, Action, TitleAction, DifferenceFromOtherClinics, Info, Directions
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
+
+from .forms import ContactForm
+from .models import Services, Action, TitleAction, DifferenceFromOtherClinics, Info, Directions, Contact
 
 
 def conf_policy(request):
@@ -32,3 +34,37 @@ class MainView(views.View):
             'title_action': title_action,
         }
         return render(request, 'index.html', context)
+
+
+def contact_view(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        print(form.data)
+        if form.is_valid():
+            updated_values = {'complete': False}
+            phone_number = form.cleaned_data['phone']
+            form_name = form.cleaned_data['form_name']
+            if form.cleaned_data['user_name']:
+                print(form_name, 'with name')
+                Contact.objects.update_or_create(user_name=form.cleaned_data['user_name'],
+                                                 phone=phone_number,
+                                                 form_name=form_name,
+                                                 defaults=updated_values)
+                return redirect('home')
+            elif form.cleaned_data['message']:
+                print(form_name, 'message')
+                Contact.objects.update_or_create(message=form.cleaned_data['message'],
+                                                 phone=phone_number,
+                                                 form_name=form_name,
+                                                 defaults=updated_values)
+                return redirect('home')
+            else:
+                print(form_name, 'just phone')
+                Contact.objects.update_or_create(phone=phone_number,
+                                                 form_name=form_name,
+                                                 defaults=updated_values)
+                return redirect('home')
+        else:
+            print('wrong input')
+            print(form.errors)
+            return HttpResponse(form.errors['user_tel'])

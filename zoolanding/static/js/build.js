@@ -4649,10 +4649,12 @@ function _typeof(e) {
                 }), r.push({name: "source", value: p.utm_source}), r.push({name: "ref", value: u});
                 var o = $(this), a = o.find("button");
                 return $.ajax({
-                    url: "php/mail.php", type: "POST", data: r, beforeSend: function (e) {
+                    url: "contact/", type: "POST", data: r, beforeSend: function (e) {
+                        console.log(r)
                         a.notify("Отправка заявки", {position: "bottom center", className: "info"})
                     }, success: function (e) {
-                        console.log(e), a.notify("Заявка принята", {
+                        // console.log(e),
+                            a.notify("Заявка принята", {
                             position: "bottom center",
                             className: "success"
                         }), o.trigger("reset"), $.cookie("utm_mas", null), $.cookie("refSave", null), s = !1, dataLayer.push({event: "formsend"})

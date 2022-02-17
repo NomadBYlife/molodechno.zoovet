@@ -106,3 +106,15 @@ class DifferenceFromOtherClinics(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Contact(models.Model):
+    user_name = models.CharField(verbose_name='Имя пользователя', max_length=20, blank=True)
+    phone = models.CharField(verbose_name='Номер телефона', max_length=20)
+    complete = models.BooleanField(verbose_name='Обработано', default=False)
+    created = models.DateTimeField(auto_now_add=True)
+    form_name = models.CharField(verbose_name='Из какой формы заявка', max_length=50)
+    message = models.TextField(verbose_name='Сообщение', blank=True)
+
+    def __str__(self):
+        return self.phone
