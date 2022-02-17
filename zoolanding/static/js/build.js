@@ -4628,7 +4628,7 @@ function _typeof(e) {
     $("form").submit(function (e) {
         e.preventDefault();
         var t = $(this).find("input[type=tel]"), i = t.val().substring(5, 7), n = t.val().replace(/[^0-9]/g, "");
-        if (0 !== n.length) if (n.length < 12 && 4 <= n.length) t.notify("Номер введён не полностью", {
+        if (0 !== n.length) if (n.length < 12 && 4 <= n.length) t.notify("Номер ввеxдён не полностью", {
             position: "bottom",
             className: "warn",
             gap: 0,
@@ -4654,7 +4654,6 @@ function _typeof(e) {
                 var o = $(this), a = o.find("button");
                 return $.ajax({
                     url: "contact/", type: "POST", data: r, beforeSend: function (e) {
-                        console.log(r)
                         a.notify("Отправка заявки", {position: "bottom center", className: "info"})
                     }, success: function (e) {
                             a.notify("Заявка принята", {
