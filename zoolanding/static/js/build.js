@@ -4637,23 +4637,26 @@ function _typeof(e) {
             if (12 === n.length && !s && ("29" === i || "33" === i || "44" === i || "25" === i || "17" === i)) {
                 s = !0;
                 var r = $(this).serializeArray();
-                r.push({name: "user_client", value: l}), r.push({name: "href", value: c}), r.push({
-                    name: "search",
-                    value: d
-                }), r.push({name: "term", value: p.utm_term}), r.push({
-                    name: "content",
-                    value: p.utm_content
-                }), r.push({name: "campaign", value: p.utm_campaign}), r.push({
-                    name: "medium",
-                    value: p.utm_medium
-                }), r.push({name: "source", value: p.utm_source}), r.push({name: "ref", value: u});
+                r.push({name: "user_client", value: l}), r.push({name: "href", value: c});
+                    // r.push({
+                    // name: "search",
+                    // value: d
+                // }),
+                //     r.push({name: "term", value: p.utm_term}), r.push({
+                //     name: "content",
+                //     value: p.utm_content
+                // }),
+                //     r.push({name: "campaign", value: p.utm_campaign}), r.push({
+                //     name: "medium",
+                //     value: p.utm_medium
+                // }),
+                    // r.push({name: "source", value: p.utm_source}), r.push({name: "ref", value: u});
                 var o = $(this), a = o.find("button");
                 return $.ajax({
                     url: "contact/", type: "POST", data: r, beforeSend: function (e) {
                         console.log(r)
                         a.notify("Отправка заявки", {position: "bottom center", className: "info"})
                     }, success: function (e) {
-                        // console.log(e),
                             a.notify("Заявка принята", {
                             position: "bottom center",
                             className: "success"

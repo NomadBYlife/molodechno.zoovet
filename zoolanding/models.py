@@ -51,7 +51,7 @@ class Services(models.Model):
 
 class Description(models.Model):
     name_of_service = models.CharField('Наименование услуги', max_length=250)
-    price = models.CharField(max_length=13 ,verbose_name='Стоимость, бел. руб.')
+    price = models.CharField(max_length=13, verbose_name='Стоимость, бел. руб.')
     service = models.ForeignKey('Services', on_delete=models.CASCADE, related_name='Service',
                                 verbose_name='Категория услуг')
     published = models.BooleanField(default=True, verbose_name='Опубликовано')
@@ -78,7 +78,6 @@ class TitleAction(models.Model):
 
 
 class Action(models.Model):
-
     title = models.CharField(max_length=100, verbose_name='название акции')
     image = RichTextUploadingField(blank=True, null=True, verbose_name='картинка', config_name='custom')
     description = RichTextUploadingField(verbose_name='описание акции')
@@ -94,7 +93,7 @@ class Action(models.Model):
     def __str__(self):
         return self.title
 
-      
+
 class DifferenceFromOtherClinics(models.Model):
     title = models.CharField('Название отличия', max_length=100)
     description = models.TextField('Описание')
@@ -110,11 +109,15 @@ class DifferenceFromOtherClinics(models.Model):
 
 class Contact(models.Model):
     user_name = models.CharField(verbose_name='Имя пользователя', max_length=20, blank=True)
-    phone = models.CharField(verbose_name='Номер телефона', max_length=20)
+    phone = models.CharField(verbose_name='Номер телефона', max_length=20, db_index=True)
     complete = models.BooleanField(verbose_name='Обработано', default=False)
     created = models.DateTimeField(auto_now_add=True)
     form_name = models.CharField(verbose_name='Из какой формы заявка', max_length=50)
     message = models.TextField(verbose_name='Сообщение', blank=True)
+
+    class Meta:
+        verbose_name = 'Заявка'
+        verbose_name_plural = 'Заявки'
 
     def __str__(self):
         return self.phone
