@@ -22,7 +22,8 @@ from zoolanding.views import conf_policy, MainView, contact_view
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),
-    path('', MainView.as_view(), name='home'),
+    path('', include('viber_bot.urls')),
+    path('home/', MainView.as_view(), name='home'),
     path('conf-policy', conf_policy, name='conf_policy'),
     path('contact/', contact_view, name='contact'),
 ]
