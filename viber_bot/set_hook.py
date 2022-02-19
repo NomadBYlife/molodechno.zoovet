@@ -6,7 +6,7 @@ auth_token = '4ec245f20fa7e0ef-41fc3c12266ed5f9-460f0de282db91bd'  # тут ва
 hook = 'https://chatapi.viber.com/pa/set_webhook'
 headers = {'X-Viber-Auth-Token': auth_token}
 
-sen = dict(url='https://08de-46-53-253-137.ngrok.io',
+sen = dict(url='https://b0c7-46-53-253-137.ngrok.io',
            event_types=['unsubscribed', 'conversation_started', 'message'])
                # , 'seen', 'delivered'])
 # sen - это body запроса для отправки к backend серверов viber
