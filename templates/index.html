@@ -103,9 +103,8 @@
         </div>
         <form class="top-bar-form">
             {% csrf_token %}
-            <input type="hidden" name="form_name"
-                                          value="Молодечно: Заказать звонок (топ бар)"/><input
-                class="form-phone top-bar-form-phone" type="tel" name="phone" placeholder="Впишите телефон"/>
+            <input type="hidden" name="form_name" value="Молодечно: Заказать звонок (топ бар)"/>
+            <input class="form-phone top-bar-form-phone" type="tel" name="phone" placeholder="Впишите телефон"/>
             <button class="form-btn top-bar-form-btn" type="submit">ЗАКАЗАТЬ ЗВОНОК</button>
         </form>
     </div>
@@ -121,9 +120,9 @@
             <form class="form header_form">
                 {% csrf_token %}
                 <div class="form-title header_form-title">Запишитесь на приём<br/>&#32; к специалисту прямо сейчас</div>
-                <div class="form-inputs header_form-inputs"><input type="hidden" name="form_name"
-                                                                   value="Молодечно: Записаться на приём"/><input
-                        class="form-phone header_form-phone" name="phone" placeholder="Впишите телефон" type="tel"/>
+                <div class="form-inputs header_form-inputs">
+                    <input type="hidden" name="form_name" value="Молодечно: Записаться на приём"/>
+                    <input class="form-phone header_form-phone" name="phone" placeholder="Впишите телефон" type="tel"/>
                     <button class="form-btn header_form-btn" type="submit">Записаться</button>
                 </div>
             </form>
@@ -180,12 +179,10 @@
                 <div class="form-title action_form-title">Оставьте заявку и наш<br/>&#32; консультант сразу же вам<br/>&#32;
                     перезвонит
                 </div>
-                <div class="form-inputs action_form-inputs"><input type="hidden" name="form_name"
-                                                                   value="Молодечно: Акция (узнать подробности)"/><input
-                        class="form-name" name="name" placeholder="Впишите имя" type="text"/><input class="form-phone"
-                                                                                                    name="phone"
-                                                                                                    placeholder="Впишите телефон"
-                                                                                                    type="tel"/>
+                <div class="form-inputs action_form-inputs">
+                    <input type="hidden" name="form_name" value="Молодечно: Акция (узнать подробности)"/>
+                    <input class="form-name" name="user_name" placeholder="Впишите имя" type="text"/>
+                    <input class="form-phone" name="phone" placeholder="Впишите телефон" type="tel"/>
                     <button class="form-btn" type="submit">Отправить</button>
                 </div>
             </form>
@@ -208,10 +205,10 @@
                     <div class="form-title form-hor-title service_form-title">С вашим питомцем что-то не так?<br/>&#32;
                         Оставьте заявку для бесплатной консультации
                     </div>
-                    <div class="form-inputs service_form-inputs"><input type="hidden" name="form_name"
-                                                                        value="Молодечно: Получить консультацию"/><input
-                            class="form-name" name="name" placeholder="Впишите имя" type="text"/><input
-                            class="form-phone" name="phone" placeholder="Впишите телефон" type="tel"/>
+                    <div class="form-inputs service_form-inputs">
+                        <input type="hidden" name="form_name" value="Молодечно: Получить консультацию"/>
+                        <input class="form-name" name="user_name" placeholder="Впишите имя" type="text"/>
+                        <input class="form-phone" name="phone" placeholder="Впишите телефон" type="tel"/>
                         <button class="form-btn" type="submit">Оставить заявку</button>
                     </div>
                 </form>
@@ -264,9 +261,9 @@
                     <div class="form-title form-hor-title specialist_form-title">Вы обнаружили один из симптомов?<br/>&#32;
                         Оставьте заявку и мы перезвоним Вам
                     </div>
-                    <div class="form-inputs specialist_form-inputs"><input type="hidden" name="form_name"
-                                                                           value="Молодечно: Вызвать специалиста"/><input
-                            class="form-phone" name="phone" placeholder="Впишите телефон" type="tel"/>
+                    <div class="form-inputs specialist_form-inputs">
+                        <input type="hidden" name="form_name" value="Молодечно: Симптомы, заявка"/>
+                        <input class="form-phone" name="phone" placeholder="Впишите телефон" type="tel"/>
                         <button class="form-btn" type="submit">Оставить заявку</button>
                     </div>
                 </form>
@@ -357,12 +354,10 @@
                 <div class="form-title form-hor-title pain_form-title">Вы обнаружили один из симптомов?<br/>&#32;
                     Оставьте заявку, мы свяжемся с Вами!
                 </div>
-                <div class="form-inputs pain_form-inputs"><input type="hidden" name="form_name"
-                                                                 value="Молодечно: Вызвать специалиста"/><input
-                        class="form-name" name="name" placeholder="Впишите имя" type="text"/><input class="form-phone"
-                                                                                                    name="phone"
-                                                                                                    placeholder="Впишите телефон"
-                                                                                                    type="tel"/>
+                <div class="form-inputs pain_form-inputs">
+                    <input type="hidden" name="form_name" value="Молодечно: Вызвать специалиста"/>
+                    <input class="form-name" name="user_name" placeholder="Впишите имя" type="text"/>
+                    <input class="form-phone" name="phone" placeholder="Впишите телефон" type="tel"/>
                     <button class="form-btn" type="submit">Оставить заявку</button>
                 </div>
             </form>
@@ -461,10 +456,10 @@
             <form class="form questions_form">
                 {% csrf_token %}
                 <div class="form-title">Задайте вопрос<br/>&#32; нашим консультантам</div>
-                <div class="form-inputs questions_form-inputs"><input type="hidden" name="form_name"
-                                                                      value="Молодечно: Остались вопросы"/><input
-                        class="form-phone" name="phone" placeholder="Впишите телефон" type="tel"/><textarea
-                        class="form-message" name="message" placeholder="Впишите сообщение"></textarea>
+                <div class="form-inputs questions_form-inputs">
+                    <input type="hidden" name="form_name" value="Молодечно: Остались вопросы"/>
+                    <input class="form-phone" name="phone" placeholder="Впишите телефон" type="tel"/>
+                    <textarea class="form-message" name="message" placeholder="Впишите сообщение"></textarea>
                     <button class="form-btn" type="submit">Отправить</button>
                 </div>
             </form>
@@ -476,9 +471,9 @@
             <form class="modal_form">
                 {% csrf_token %}
                 <div class="form-title modal-feedback-title">Написать отзыв</div>
-                <input type="hidden" name="form_name" value="Молодечно: Отзыв"><input
-                    class="form-phone modal_form-phone" name="phone" placeholder="Впишите телефон" type="tel"><textarea
-                    class="form-message modal_form-message" name="message" placeholder="Введите сообщение"></textarea>
+                <input type="hidden" name="form_name" value="Молодечно: Отзыв">
+                <input class="form-phone modal_form-phone" name="phone" placeholder="Впишите телефон" type="tel">
+                <textarea class="form-message modal_form-message" name="message" placeholder="Введите сообщение"></textarea>
                 <button class="form-btn modal_form-btn" type="submit">Отправить отзыв</button>
             </form>
             <ul class="modal-lists">
