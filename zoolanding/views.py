@@ -7,7 +7,8 @@ from .forms import ContactForm
 from django.core.mail import send_mail
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from zoolanding.models import Services, Action, TitleAction, DifferenceFromOtherClinics, Info, Directions, Review
+from zoolanding.models import Services, Action, TitleAction, DifferenceFromOtherClinics, Info, Directions, Review, \
+    Contact
 
 
 def conf_policy(request):
