@@ -77,7 +77,7 @@ def my_handler(sender, **kwargs):
     name = kwargs['instance']
     mine = Contact.objects.get(phone=name)
     # sending text message to viber bot:
-    id = '/fBignHGy9gqVEOoEKNuog=='  # viber id
+    id = 'F3cd4TRZmi0tE6tgoAIUTw=='  # viber id
     text = f'{mine.form_name}\n' \
            f'Заявка от {mine.user_name}\n' \
            f'Номер телефона: \n{mine.phone}: \n' \

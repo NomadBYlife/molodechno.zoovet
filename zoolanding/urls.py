@@ -8,5 +8,4 @@ urlpatterns = [
     path('', MainView.as_view(), name='home'),  # main page
     path('contact/', contact_view, name='contact'),  # forms
     ]
-'F3cd4TRZmi0tE6tgoAIUTw=='
-'/fBignHGy9gqVEOoEKNuog=='
+
