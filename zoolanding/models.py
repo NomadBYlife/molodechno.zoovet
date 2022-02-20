@@ -112,13 +112,14 @@ class Contact(models.Model):
     user_name = models.CharField(verbose_name='Имя пользователя', max_length=20, blank=True)
     phone = models.CharField(verbose_name='Номер телефона', max_length=20, db_index=True)
     complete = models.BooleanField(verbose_name='Обработано', default=False)
-    created = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(verbose_name='Создана', auto_now_add=True)
     form_name = models.CharField(verbose_name='Из какой формы заявка', max_length=50)
     message = models.TextField(verbose_name='Сообщение', blank=True)
 
     class Meta:
         verbose_name = 'Заявка'
         verbose_name_plural = 'Заявки'
+        ordering = ['-created']
 
     def __str__(self):
         return self.phone
@@ -146,7 +147,6 @@ class Review(models.Model):
     content = models.TextField('содержание отзыва')
     published = models.BooleanField('опубликовано', default=True)
     image = RichTextUploadingField(blank=True, null=True, verbose_name='картинка', config_name='custom')
-    # image = models.ImageField(upload_to="photo_review/%Y/%m/%d/", blank=True, null=True, verbose_name='фото автора')
 
     class Meta:
         verbose_name = 'Отзыв'
