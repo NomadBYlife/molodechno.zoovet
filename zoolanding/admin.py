@@ -1,5 +1,4 @@
 from django.contrib import admin
-
 from zoolanding.forms import ReviewAdminChoiceForm
 from zoolanding.models import Description, Services, Action, DifferenceFromOtherClinics, Info, \
     Directions, TitleAction, Review, Contact
@@ -58,7 +57,7 @@ class ReviewAdmin(admin.ModelAdmin):
 
 
 class ContactAdmin(admin.ModelAdmin):
-    list_display = ('phone', 'complete', 'created', 'form_name', 'message')
+    list_display = ('phone', 'complete', 'created', 'form_name', 'user_name', 'message')
     list_editable = ('complete',)
     list_display_links = ('phone',)
 
