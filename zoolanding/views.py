@@ -4,10 +4,10 @@ from django.shortcuts import render, redirect
 
 from viber_bot.views import send_text
 from .forms import ContactForm
-from .models import Services, Action, TitleAction, DifferenceFromOtherClinics, Info, Directions, Contact
 from django.core.mail import send_mail
-from django.db.models.signals import pre_save, post_save
+from django.db.models.signals import post_save
 from django.dispatch import receiver
+from zoolanding.models import Services, Action, TitleAction, DifferenceFromOtherClinics, Info, Directions, Review
 
 
 def conf_policy(request):
@@ -29,6 +29,7 @@ class MainView(views.View):
         differences = DifferenceFromOtherClinics.objects.filter(published=True)[0:6]
         info = Info.objects.filter(published=True)[0:1]
         directions = Directions.objects.filter(published=True)
+        review = Review.objects.filter(published=True)
         context = {
             'action': action_all,
             'services': services,
@@ -36,6 +37,7 @@ class MainView(views.View):
             'info': info,
             'directions': directions,
             'title_action': title_action,
+            'review': review,
         }
         return render(request, 'index.html', context)
 

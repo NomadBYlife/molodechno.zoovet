@@ -1119,9 +1119,9 @@
     margin-bottom: 10px
 }
 
-.feedback-person-img {
-    width: 104px;
-    height: 104px;
+.feedback-person, .feedback-person-img>p>img {
+    max-width: 104px;
+    max-height: 104px;
     border: 2px solid #ffc50a;
     box-shadow: 0 1px 14px #c1c0c0;
     margin-right: 10px
@@ -1161,7 +1161,9 @@
     text-decoration: underline;
     margin-top: 30px
 }
-
+.feedback-write>a{
+    color: #3b5998;
+}
 .feedback__review-title {
     font-size: 18px;
     font-weight: 400;
@@ -1618,7 +1620,7 @@
         font-size: 18px
     }
 
-    .feedback-person-img {
+    .feedback-person, .feedback-person-img>p>img {
         border-radius: 100%;
         margin-right: 15px
     }

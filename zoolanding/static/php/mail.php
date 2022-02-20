@@ -1,5 +1,5 @@
 <?php
-	$to = "hospital-mol@zoovet.by, pragma.kontrol@yandex.ru";
+	$to = "nomod92@mail.ru";
 	$subject = "Заявка с сайта: molodechno.zoovet.by";
 	$user_name = htmlspecialchars($_POST['name']);
 	$user_phone = htmlspecialchars($_POST['phone']);
@@ -102,7 +102,7 @@
 		</body>
 	</html>
 	";
-	$header = "From: molodechno.zoovet.by <lead@molodechno.zoovet.by> \r\nContent-type: text/html; charset=UTF-8 \r\n";
+	$header = "From: vp3231963@gmail.com <vp3231963@gmail.com>\r\nContent-type: text/html; charset=UTF-8 \r\n";
 	mail($to, $subject, $message, $header);
 	#include('crm.php');
 	echo "Заявка принята";

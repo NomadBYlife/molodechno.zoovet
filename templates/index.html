@@ -388,87 +388,37 @@
     <section class="feedback shadow-top shadow-bottom lazy-bg">
         <div class="feedback-items"><h2 class="section-title feedback-title">Отзывы наших любимых клиентов</h2>
             <div class="feedback-slider">
+                {% for i in review %}
                 <div class="feedback-slider-item">
                     <div class="feedback-item" itemscope="review" itemtype="http://schema.org/Review">
-                        <div class="feedback-item-person"><img class="feedback-person-img lazy"
-                                                               src="{% static 'img/feedback/feedback-main-1.jpg' %}"
-                                                               alt="Фотография клиента"/>
+                        <div class="feedback-item-person">
+                                                                {% if i.image %}
+                                                               <div class="feedback-person-img">{{ i.image|safe }}</div>
+                                                               {% else %}
+                                                               <img class="feedback-person" src="{% static 'img/feedback/no-photo.jpeg' %}" alt="Фотография клиента"/>
+                                                               {% endif %}
                             <div class="feedback-person-descr">
                                 <div class="feedback-person-name" itemprop="author" itemscope=""
-                                     itemtype="http://schema.org/Person"><p itemprop="name">Руслан Довыденко</p><span>Молодечно</span>
-                                    <div class="feedback-person-date"></div>
+                                     itemtype="http://schema.org/Person"><p itemprop="name">{{ i.author }}</p><span>{{ i.city }}</span>
+                                    <div class="">{{ i.data|date:'d.m.Y' }}</div>
                                 </div>
                                 <div class="feedback-person-rating" itemprop="reviewRating" itemscope=""
                                      itemtype="http://schema.org/Rating">
                                     <meta itemprop="worstRating" content="0"/>
-                                    <p>Оценка: &#32;<span itemprop="ratingValue">10</span> из &#32;<span
+                                    <p>Оценка: &#32;<span itemprop="ratingValue">{{ i.raiting }}</span> из &#32;<span
                                             itemprop="bestRating">10</span></p></div>
                             </div>
                         </div>
                         <div class="feedback-item-review"><h3 class="feedback__review-title" itemprop="itemReviewed">
-                            Отличная ветеринарная клиника в Молодечно</h3>
-                            <p class="feedback__review-descr" itemprop="reviewBody">Неделю назад впервые обратился в
-                                «ЗооВетМаркет» для стерилизации кошки. Очень переживал за неё, но все прошло хорошо.
-                                Кошка чувствует себя хорошо после операции. Хочу выразить благодарность всему персоналу
-                                ветеринарной клиники, все очень доброжелательные и хорошо относятся к животным, подробно
-                                рассказали про дальнейший уход за питомцем. Я полностью остался доволен обслуживанием,
-                                спасибо Вам большое!</p></div>
+                            {{ i.title }}</h3>
+                            <p class="feedback__review-descr" itemprop="reviewBody">{{ i.content }}</p></div>
                     </div>
                 </div>
-                <div class="feedback-slider-item">
-                    <div class="feedback-item" itemscope="review" itemtype="http://schema.org/Review">
-                        <div class="feedback-item-person"><img class="feedback-person-img lazy"
-                                                               src="{% static 'img/feedback/feedback-main-2.jpg' %}"
-                                                               alt="Фотография клиента"/>
-                            <div class="feedback-person-descr">
-                                <div class="feedback-person-name" itemprop="author" itemscope=""
-                                     itemtype="http://schema.org/Person"><p itemprop="name">Татьяна Праскина</p><span>Молодечно</span>
-                                    <div class="feedback-person-date"></div>
-                                </div>
-                                <div class="feedback-person-rating" itemprop="reviewRating" itemscope=""
-                                     itemtype="http://schema.org/Rating">
-                                    <meta itemprop="worstRating" content="0"/>
-                                    <p>Оценка: &#32;<span itemprop="ratingValue">10</span> из &#32;<span
-                                            itemprop="bestRating">10</span></p></div>
-                            </div>
-                        </div>
-                        <div class="feedback-item-review"><h3 class="feedback__review-title" itemprop="itemReviewed">
-                            Отзыв о ветеринарной клинике в Молодечно</h3>
-                            <p class="feedback__review-descr" itemprop="reviewBody">Привозила в эту ветеринарную клинику
-                                в Молодечно своего кота, был сильный конъюнктивит. Ветеринар осмотрел, выписал капли,
-                                проконсультировал как ухаживать чтобы не повторилось. В итоге конъюнктивит вылечили
-                                довольно быстро. О клиники остались положительные впечатления, грамотные специалисты,
-                                адекватный цены на услуги. В общем я осталась довольна, рекомендую!</p></div>
-                    </div>
-                </div>
-                <div class="feedback-slider-item">
-                    <div class="feedback-item" itemscope="review" itemtype="http://schema.org/Review">
-                        <div class="feedback-item-person"><img class="feedback-person-img lazy"
-                                                               src="{% static 'img/feedback/feedback-main-3.jpg' %}"
-                                                               alt="Фотография клиента"/>
-                            <div class="feedback-person-descr">
-                                <div class="feedback-person-name" itemprop="author" itemscope=""
-                                     itemtype="http://schema.org/Person"><p itemprop="name">Ирина Колосовская</p><span>Молодечно</span>
-                                    <div class="feedback-person-date"></div>
-                                </div>
-                                <div class="feedback-person-rating" itemprop="reviewRating" itemscope=""
-                                     itemtype="http://schema.org/Rating">
-                                    <meta itemprop="worstRating" content="0"/>
-                                    <p>Оценка: &#32;<span itemprop="ratingValue">9</span> из &#32;<span
-                                            itemprop="bestRating">10</span></p></div>
-                            </div>
-                        </div>
-                        <div class="feedback-item-review"><h3 class="feedback__review-title" itemprop="itemReviewed">
-                            Лучшая ветеринарная клиника в Молодечно</h3>
-                            <p class="feedback__review-descr" itemprop="reviewBody">Здравствуйте! В этой ветеринарной
-                                клинике мы не впервые — устраивает все, и обслуживание, и отношение. Грамотные
-                                специалисты, отличная обстановка в клинике, поддержание чистоты и адекватный прайс на
-                                услуги. Делали недавно своему псу ультразвуковую чистку зубов. Процедура не из приятных,
-                                но ветеринар сделал все аккуратно и без наркоза. Если ищете хорошую ветеринарную клинику
-                                в Молодечно, рекомендуем обращаться в «ЗооВетМаркет».</p></div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
+            <div class="feedback-write">
+                <a href="https://www.google.com/maps/place/Veterinarnaya+Klinika+Zoovet,+G.+Maladzyechna/@54.3062984,26.8445562,16.99z/data=!4m7!3m6!1s0x46dc75a00514ec15:0xd449b6cfbc3f93da!8m2!3d54.3062421!4d26.8443632!9m1!1b1" target="_blank">
+                Больше отзывов о нас в Google</a></div>
             <div class="feedback-write" id="openModal-feedback">Оставить отзыв</div>
         </div>
     </section>
@@ -575,5 +525,5 @@
 <script>window.jQuery ||
 document.write('<script src="../zoolanding/static/js/jquery-3.3.1.min.js"><\/script>')
 </script>
-<script async="" src="/static/js/build.js"></script>
+<script async="" src="{% static 'js/build.js' %}"></script>
 </body>
