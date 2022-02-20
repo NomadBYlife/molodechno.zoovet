@@ -43,7 +43,7 @@ def privet(request):
         if viber['event'] == 'message':
             mes(viber)
             return HttpResponse(status=200)
-        if viber['event'] == 'webhook':
+        elif viber['event'] == 'webhook':
             print(viber)
             print("Webhook успешно установлен")
             return HttpResponse(status=200)
@@ -59,24 +59,18 @@ def privet(request):
 def conversation(viber):
     id = viber['user']['id']
     if viber['subscribed']:
-        send_text(id, 'Напишите \новости, или \сорт винограда который вас интересует =)')
+        send_text(id, 'Напишите \привет ')
     else:
-        send_text(id, 'Подпишись и будь в курсе всех новшеств в мире вина и виноделия! =)')
+        send_text(id, 'Подпишись или выходи =)')
+
 
 def mes(viber):
-    id = viber['sender']['id']
-    recieve_text = viber['message']['text'].lower()
-    a = 'новости'
-    n = 'настена'
-    ne = 'настёна'
-    print(recieve_text=='настёна','!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-    if recieve_text == a:
-        send_text(id, 'Бот Вайбер-Бендер готов !')
-        send_pic(id, "https://www.linkpicture.com/q/The_Bender.jpg",'uuu suka')
-    elif recieve_text == (ne) or recieve_text == (n):
-        send_text(id, "Настёна и Корнюша")
-        send_sticker(id, 40108)
-        # send_text(id, ' и Лёвушка!!!')
-        send_pic(id,"https://www.linkpicture.com/q/photo_2022-02-19_01-15-28.jpg","и Лёвушка")
+    id = viber['sender']['id']  # get viber id, to send message back to it
+    received_text = viber['message']['text'].lower()
+    a = 'привет'
+    if received_text == a:
+        send_text(id, f'Бот Вайбер-Бендер к твоему распоряжению {viber["sender"]["name"]} !')
+        send_pic(id, "https://www.linkpicture.com/q/The_Bender.jpg", 'What\'s up??!')
+        send_sticker(id, 120009)
     else:
-        send_text(id, 'Нет совпадений')
+        send_text(id, f'{viber["message"]["text"]}')  # echo

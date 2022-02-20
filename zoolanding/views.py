@@ -1,6 +1,8 @@
 from django import views
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+
+from viber_bot.views import send_text
 from .forms import ContactForm
 from .models import Services, Action, TitleAction, DifferenceFromOtherClinics, Info, Directions, Contact
 from django.core.mail import send_mail
@@ -41,7 +43,6 @@ class MainView(views.View):
 def contact_view(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
-        # print(form.data)
         if form.is_valid():
             phone_number = form.cleaned_data['phone']
             form_name = form.cleaned_data['form_name']
@@ -54,69 +55,38 @@ def contact_view(request):
             if form.cleaned_data['user_name']:
                 Contact.objects.update_or_create(phone=phone_number,
                                                  defaults=updated_values)
-                return redirect('home')
+                return redirect('zoolanding:home')
             elif form.cleaned_data['message']:
                 Contact.objects.update_or_create(phone=phone_number,
                                                  defaults=updated_values)
-                return redirect('home')
+                return redirect('zoolanding:home')
             else:
                 Contact.objects.update_or_create(phone=phone_number,
                                                  defaults=updated_values)
-                return redirect('home')
+                return redirect('zoolanding:home')
         else:
             return HttpResponse(form.errors['user_tel'])
 
 
+#  signal:
 @receiver(post_save, sender=Contact)
 def my_handler(sender, **kwargs):
     name = kwargs['instance']
     mine = Contact.objects.get(phone=name)
+    # sending text message to viber bot:
+    id = '/fBignHGy9gqVEOoEKNuog=='  # viber id
+    text = f'{mine.form_name}\n' \
+           f'Заявка от {mine.user_name}\n' \
+           f'Номер телефона: \n{mine.phone}: \n' \
+           f'Сообщение: \n' \
+           f'{mine.message}'
+
+    send_text(id, text)
+    # sending email:
     send_mail(
         subject=mine.form_name,
         message=f'Заявка от {mine.user_name}, с номером телефона: {mine.phone}: {mine.message}',
         from_email='FROM EMAIL',
-        recipient_list=['TO EMAIL_LIST'],
-        fail_silently=False,
-    )
-
-
-def contact_view(request):
-    if request.method == 'POST':
-        form = ContactForm(request.POST)
-        # print(form.data)
-        if form.is_valid():
-            phone_number = form.cleaned_data['phone']
-            form_name = form.cleaned_data['form_name']
-            updated_values = {
-                'form_name': form_name,
-                'message': form.cleaned_data['message'],
-                'user_name': form.cleaned_data['user_name'],
-                'complete': False
-            }
-            if form.cleaned_data['user_name']:
-                Contact.objects.update_or_create(phone=phone_number,
-                                                 defaults=updated_values)
-                return redirect('home')
-            elif form.cleaned_data['message']:
-                Contact.objects.update_or_create(phone=phone_number,
-                                                 defaults=updated_values)
-                return redirect('home')
-            else:
-                Contact.objects.update_or_create(phone=phone_number,
-                                                 defaults=updated_values)
-                return redirect('home')
-        else:
-            return HttpResponse(form.errors['user_tel'])
-
-
-@receiver(post_save, sender=Contact)
-def my_handler(sender, **kwargs):
-    name = kwargs['instance']
-    mine = Contact.objects.get(phone=name)
-    send_mail(
-        subject=mine.form_name,
-        message=f'Заявка от {mine.user_name}, с номером телефона: {mine.phone}: {mine.message}',
-        from_email='FROM EMAIL',
-        recipient_list=['TO EMAIL_LIST'],
+        recipient_list=['TO EMAIL LIST'],
         fail_silently=False,
     )
