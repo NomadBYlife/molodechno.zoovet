@@ -1,9 +1,9 @@
 import datetime
 from datetime import timezone
-
 from django import views
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from viber_bot.views import send_text
 from .forms import ContactForm
 from django.core.mail import send_mail
 from django.db.models.signals import post_save
@@ -42,7 +42,6 @@ class MainView(views.View):
             'review': review,
         }
         return render(request, 'index.html', context)
-
     def post(self, request, *args, **kwargs):
         if request.method == 'POST':
             form = ContactForm(request.POST)
@@ -61,15 +60,25 @@ class MainView(views.View):
                 return HttpResponse(form.errors['user_tel'])
 
 
+#  signal:
 @receiver(post_save, sender=Contact)
 def my_handler(sender, **kwargs):
     name = kwargs['instance']
     mine = Contact.objects.get(phone=name)
+    # sending text message to viber bot:
+    id = 'F3cd4TRZmi0tE6tgoAIUTw=='  # viber id
+    text = f'{mine.form_name}\n' \
+           f'Заявка от {mine.user_name}\n' \
+           f'Номер телефона: \n{mine.phone}: \n' \
+           f'Сообщение: \n' \
+           f'{mine.message}'
+    send_text(id, text)
+    # sending email:
     send_mail(
         subject=mine.form_name,
         message=f'Новая заявка {mine.user_name} Номер телефона: {mine.phone}. {mine.message}',
         from_email="Zoovet molo",
-        recipient_list=['antonio.troitski@gmail.com'],
+        recipient_list=['antonio.troitski@gmail.com'], #почтовый ящик(и) куда отправляем письма
         fail_silently=False,
     )
 

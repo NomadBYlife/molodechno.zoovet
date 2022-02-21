@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-z+f$li86jopu3blusde+pmmbh6q=zt13jp6p^&i0_(riyl!_oe
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '.ngrok.io', '127.0.0.1']
 
 
 # Application definition
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
 
     'zoolanding',
+    'viber_bot',
 ]
 
 MIDDLEWARE = [
