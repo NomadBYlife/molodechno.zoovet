@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
 
     'zoolanding',
-    'viber_bot',
 ]
 
 MIDDLEWARE = [
