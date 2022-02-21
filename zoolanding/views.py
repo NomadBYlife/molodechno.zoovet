@@ -1,7 +1,8 @@
+import datetime
+from datetime import timezone
 from django import views
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-
 from viber_bot.views import send_text
 from .forms import ContactForm
 from django.core.mail import send_mail
@@ -41,34 +42,22 @@ class MainView(views.View):
             'review': review,
         }
         return render(request, 'index.html', context)
-
-
-def contact_view(request):
-    if request.method == 'POST':
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            phone_number = form.cleaned_data['phone']
-            form_name = form.cleaned_data['form_name']
-            updated_values = {
-                'form_name': form_name,
-                'message': form.cleaned_data['message'],
-                'user_name': form.cleaned_data['user_name'],
-                'complete': False
-            }
-            if form.cleaned_data['user_name']:
-                Contact.objects.update_or_create(phone=phone_number,
-                                                 defaults=updated_values)
-                return redirect('zoolanding:home')
-            elif form.cleaned_data['message']:
-                Contact.objects.update_or_create(phone=phone_number,
-                                                 defaults=updated_values)
-                return redirect('zoolanding:home')
+    def post(self, request, *args, **kwargs):
+        if request.method == 'POST':
+            form = ContactForm(request.POST)
+            if form.is_valid():
+                form_name = form.cleaned_data['form_name']
+                updated_values = {
+                    'form_name': form_name,
+                    'message': form.cleaned_data['message'],
+                    'user_name': form.cleaned_data['user_name'],
+                    'created': datetime.datetime.now(tz=timezone.utc),
+                    'complete': False
+                }
+                Contact.objects.update_or_create(phone=form.cleaned_data['phone'], defaults=updated_values)
+                return redirect('/')
             else:
-                Contact.objects.update_or_create(phone=phone_number,
-                                                 defaults=updated_values)
-                return redirect('zoolanding:home')
-        else:
-            return HttpResponse(form.errors['user_tel'])
+                return HttpResponse(form.errors['user_tel'])
 
 
 #  signal:
@@ -83,13 +72,14 @@ def my_handler(sender, **kwargs):
            f'Номер телефона: \n{mine.phone}: \n' \
            f'Сообщение: \n' \
            f'{mine.message}'
-
     send_text(id, text)
     # sending email:
     send_mail(
         subject=mine.form_name,
-        message=f'Заявка от {mine.user_name}, с номером телефона: {mine.phone}: {mine.message}',
-        from_email='FROM EMAIL',
-        recipient_list=['TO EMAIL LIST'],
+        message=f'Новая заявка {mine.user_name} Номер телефона: {mine.phone}. {mine.message}',
+        from_email="Zoovet molo",
+        recipient_list=['antonio.troitski@gmail.com'], #почтовый ящик(и) куда отправляем письма
         fail_silently=False,
     )
+
+
