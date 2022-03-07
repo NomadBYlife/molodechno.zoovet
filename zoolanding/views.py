@@ -7,8 +7,6 @@ from .bot import send_text
 from .configurations import USER_ID
 from .forms import ContactForm
 from django.core.mail import send_mail
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 from zoolanding.models import Services, Action, TitleAction, DifferenceFromOtherClinics, Info, Directions, Review, \
     Contact
 
@@ -43,47 +41,66 @@ class MainView(views.View):
             'review': review,
         }
         return render(request, 'index.html', context)
+
     def post(self, request, *args, **kwargs):
         if request.method == 'POST':
             form = ContactForm(request.POST)
             if form.is_valid():
                 form_name = form.cleaned_data['form_name']
-                updated_values = {
-                    'form_name': form_name,
-                    'message': form.cleaned_data['message'],
-                    'user_name': form.cleaned_data['user_name'],
-                    'created': datetime.datetime.now(tz=timezone.utc),
-                    'complete': False
-                }
-                Contact.objects.update_or_create(phone=form.cleaned_data['phone'], defaults=updated_values)
+                contact = Contact.objects.filter(phone=form.cleaned_data['phone']).first()
+                if contact:
+                    if not contact.complete:
+                        contact.created = datetime.datetime.now(tz=timezone.utc)
+                        contact.user_name = form.cleaned_data['user_name']
+                        contact.message = form.cleaned_data['message']
+                        contact.form_name = form_name
+                        contact.save()
+                        return HttpResponse(form.errors)
+                    else:
+                        contact.created = datetime.datetime.now(tz=timezone.utc)
+                        contact.user_name = form.cleaned_data['user_name']
+                        contact.message = form.cleaned_data['message']
+                        contact.complete = False
+                        contact.form_name = form_name
+                        contact.save()
+                        send_mail(
+                                subject=contact.form_name,
+                                message=f'Повторная заявка {contact.user_name} Номер телефона: {contact.phone}.'
+                                        f' {contact.message}',
+                                from_email="Zoovet molo",
+
+                                recipient_list=['antonio.troitski@gmail.com'],  # email куда отправляем письма
+                                fail_silently=False,
+                            )
+                        text = f'Повторная заявка\n' \
+                               f'{contact.form_name}\n' \
+                               f'Заявка от {contact.user_name}\n' \
+                               f'Номер телефона: \n{contact.phone}: \n' \
+                               f'Сообщение: \n' \
+                               f'{contact.message}'
+                        send_text(USER_ID, text)
+                else:
+                    contact = Contact.objects.create(phone=form.cleaned_data['phone'],
+                                                     form_name=form_name,
+                                                     message=form.cleaned_data['message'],
+                                                     user_name=form.cleaned_data['user_name'],
+                                                     created=datetime.datetime.now(tz=timezone.utc),
+                                                     complete=False
+                                                     )
+                    send_mail(
+                        subject=contact.form_name,
+                        message=f'Новая заявка {contact.user_name} Номер телефона: {contact.phone}. {contact.message}',
+                        from_email="Zoovet molo",
+                        recipient_list=['antonio.troitski@gmail.com'],  # email куда отправляем письма
+                        fail_silently=False,
+                    )
+                    text = f'Новая заявка\n' \
+                           f'{contact.form_name}\n' \
+                           f'Заявка от {contact.user_name}\n' \
+                           f'Номер телефона: \n{contact.phone}: \n' \
+                           f'Сообщение: \n' \
+                           f'{contact.message}'
+                    send_text(USER_ID, text)
                 return redirect('/')
             else:
                 return HttpResponse(form.errors['user_tel'])
-
-
-#  signal email:
-@receiver(post_save, sender=Contact)
-def my_handler(sender, **kwargs):
-    name = kwargs['instance']
-    mine = Contact.objects.get(phone=name)
-    send_mail(
-        subject=mine.form_name,
-        message=f'Новая заявка {mine.user_name} Номер телефона: {mine.phone}. {mine.message}',
-        from_email="Zoovet molo",
-        recipient_list=['antonio.troitski@gmail.com'], #почтовый ящик(и) куда отправляем письма
-        fail_silently=False,
-    )
-
-# signal viber-bot
-@receiver(post_save, sender=Contact)
-def my_handler(sender, **kwargs):
-    name = kwargs['instance']
-    mine = Contact.objects.get(phone=name)
-    text = f'{mine.form_name}\n' \
-           f'Заявка от {mine.user_name}\n' \
-           f'Номер телефона: \n{mine.phone}: \n' \
-           f'Сообщение: \n' \
-           f'{mine.message}'
-    send_text(USER_ID, text)
-
-
