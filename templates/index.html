@@ -98,7 +98,8 @@
         <div class="top-bar__contact top-bar__contact-2">
             {% for i in info %}
             <div class="top-bar__adress"><span>г. {{ i.city }}, </span>&#32; {{ i.address }}</div>
-            <div class="top-bar__work">{{ i.time_work1 }}{% if i.time_work2 %}<br/>&#32; {{ i.time_work2 }}{% else %}<span> {{ i.weekend }}</span>{% endif %}</div>
+{#            <div class="top-bar__work">{{ i.time_work1 }}{% if i.time_work2 %}<br/>&#32; {{ i.time_work2 }}{% else %}<span> {{ i.weekend }}</span>{% endif %}</div>#}
+            <div class="top-bar__work">{{ i.time_work1 }}<br/>&#32;{% if i.time_work2 %} {{ i.time_work2 }}{% endif %}{% if i.time_work2 %}<span> {{ i.weekend }}</span>{% endif %}</div>
             {% endfor %}
         </div>
         <form class="top-bar-form">
