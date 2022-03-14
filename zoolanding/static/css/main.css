@@ -857,8 +857,15 @@
     z-index: 11
 }
 
+@media (max-width: 768px){
+    .best_list:hover {
+    animation: fadeIn ease .0s;
+}
+}
+
 .best_list:hover .best_list-descr {
-    visibility: visible
+    visibility: visible;
+    z-index: 3;
 }
 
 .best_list:hover .best_list-title {
@@ -924,7 +931,8 @@
     padding: 10px 15px;
     box-shadow: 0 3px 6px rgba(76, 175, 0, .38);
     border-radius: 0 0 10px 10px;
-    z-index: 1
+    z-index: 1;
+    /*transition: visibility 0s;*/
 }
 
 .best_img {
